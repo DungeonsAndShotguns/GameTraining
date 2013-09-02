@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework;
 
 namespace F1tZyPong
 {
-    public class Entity
+    public abstract class Entity
     {
-        Texture2D Image = null;
+        public Texture2D Image = null;
         Vector2 Posistion = Vector2.Zero;
-        Vector2 Volcity = Vector2.Zero;
+        public Vector2 Volcity = Vector2.Zero;
         Rectangle BoundingBox = new Rectangle();
 
         public Entity() { }
@@ -22,12 +22,12 @@ namespace F1tZyPong
             Posistion = position;
         }
 
-        public abstract void LoadContent(string path) { }
+        public abstract void LoadContent(Texture2D TextureToAssign);
 
-        public abstract void UnloadContent() { }
+        public abstract void UnloadContent();
 
-        public abstract void Update() { }
+        public abstract void Update(GameTime gameTime);
 
-        public abstract void Draw() { }
+        public abstract void Draw();
     }
 }
