@@ -15,7 +15,9 @@ namespace F1tZyPong
     /// This is the main type for your game
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
-    {   
+    {
+        PaddleLeft LeftPaddle = new PaddleLeft();
+        PaddleRight RightPaddle = new PaddleRight();
 
         public Game1()
         {
@@ -45,7 +47,8 @@ namespace F1tZyPong
             // Create a new SpriteBatch, which can be used to draw textures.
             GameState.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            LeftPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleBlu"));
+            RightPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleRed"));
         }
 
         /// <summary>
@@ -64,11 +67,14 @@ namespace F1tZyPong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState KeyState = Keyboard.GetState();
+
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || KeyState.IsKeyDown(Keys.Escape) == true)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            LeftPaddle.Update(gameTime);
+            RightPaddle.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -79,11 +85,15 @@ namespace F1tZyPong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GameState.spriteBatch.Begin();
+            GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            LeftPaddle.Draw(gameTime);
+            RightPaddle.Draw(gameTime);
 
             base.Draw(gameTime);
+
+            GameState.spriteBatch.End();
         }
     }
 }

@@ -23,6 +23,8 @@ namespace F1tZyPong
         /// </summary>
         public static States CurrentState { get; set; }
 
+        public static KeyMap KMap = new KeyMap();
+
         /// <summary>
         /// The gloabl manager to mange the screen
         /// </summary>
