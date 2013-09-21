@@ -107,6 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ball.cs" />
+    <Compile Include="CollisonDetection.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="KeyMap.cs" />

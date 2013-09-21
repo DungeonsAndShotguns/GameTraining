@@ -18,6 +18,7 @@ namespace F1tZyPong
     {
         PaddleLeft LeftPaddle = new PaddleLeft();
         PaddleRight RightPaddle = new PaddleRight();
+        Ball BallInPaly = new Ball();
 
         public Game1()
         {
@@ -49,6 +50,10 @@ namespace F1tZyPong
 
             LeftPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleBlu"));
             RightPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleRed"));
+            BallInPaly.LoadContent(Content.Load<Texture2D>("image\\ballGrey"));
+
+            // load the font
+            GameState.GUIFont = Content.Load<SpriteFont>("GUIFont");
         }
 
         /// <summary>
@@ -76,6 +81,10 @@ namespace F1tZyPong
             LeftPaddle.Update(gameTime);
             RightPaddle.Update(gameTime);
 
+            CollisonDetection.CollisionDetection(BallInPaly, LeftPaddle, RightPaddle);
+
+            BallInPaly.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -90,6 +99,9 @@ namespace F1tZyPong
 
             LeftPaddle.Draw(gameTime);
             RightPaddle.Draw(gameTime);
+            BallInPaly.Draw(gameTime);
+
+            GameState.DrawScore(gameTime);
 
             base.Draw(gameTime);
 
