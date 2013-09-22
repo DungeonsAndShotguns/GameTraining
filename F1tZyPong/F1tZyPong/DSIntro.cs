@@ -37,7 +37,7 @@ namespace F1tZyPong
             //IntroStart = CurrentTime.TotalGameTime;
             
 
-            GameState.CurrentState = States.Intro;
+            //GameState.CurrentState = States.Intro;
             
         }
 
@@ -78,7 +78,7 @@ namespace F1tZyPong
                 GameState.graphics.PreferredBackBufferWidth = 800;
                 GameState.graphics.ApplyChanges();
 
-                GameState.CurrentState = States.Ingame;
+                GameState.CurrentState = States.F1tZIntro;
             }
         }
 

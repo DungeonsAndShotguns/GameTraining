@@ -16,6 +16,13 @@ namespace F1tZyPong
 
             if (leftPaddle.BoundindBox.Intersects(ballToCheck.BoundindBox))
             {
+                ballToCheck.Posistion.X = (leftPaddle.Posistion.X + leftPaddle.BoundindBox.Width);// -rightPaddle.BoundindBox.Width;
+
+                if (ballToCheck.Volcity.X < 10 && ballToCheck.Volcity.X > -10)
+                {
+                    ballToCheck.Volcity.X -= 0.5f;
+                }
+
                 ballToCheck.Volcity.X = (-1 * ballToCheck.Volcity.X);
 
                 if (ballToCheck.Volcity.Y == 0)
@@ -44,7 +51,16 @@ namespace F1tZyPong
 
             if (rightPaddle.BoundindBox.Intersects(ballToCheck.BoundindBox))
             {
+                ballToCheck.Posistion.X = (rightPaddle.Posistion.X - rightPaddle.BoundindBox.Width) - rightPaddle.BoundindBox.Width;
+
+                if (ballToCheck.Volcity.X < 10 && ballToCheck.Volcity.X > -10)
+                {
+                    ballToCheck.Volcity.X += 0.5f;
+                }
+                
                 ballToCheck.Volcity.X = (-1 * ballToCheck.Volcity.X);
+
+                
 
                 if (ballToCheck.Volcity.Y == 0)
                 {

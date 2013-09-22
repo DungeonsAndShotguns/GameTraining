@@ -16,7 +16,8 @@ namespace F1tZyPong
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        DSIntro Intro = null;  
+        DSIntro Intro = null;
+        F1tZLogo F1tZIntro = null;
         PaddleLeft LeftPaddle = new PaddleLeft();
         PaddleRight RightPaddle = new PaddleRight();
         Ball BallInPaly = new Ball();
@@ -35,7 +36,16 @@ namespace F1tZyPong
         /// </summary>
         protected override void Initialize()
         {
-            GameState.CurrentState = States.Intro;
+            GameState.Debug = true;
+
+            if (GameState.Debug == false)
+            {
+                GameState.CurrentState = States.Intro;
+            }
+            else
+            {
+                GameState.CurrentState = States.Ingame;
+            }
 
             base.Initialize();
         }
@@ -50,6 +60,7 @@ namespace F1tZyPong
             GameState.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Intro = new DSIntro(this.Content);
+            F1tZIntro = new F1tZLogo(this.Content);
 
             LeftPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleBlu"));
             RightPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleRed"));
@@ -80,6 +91,11 @@ namespace F1tZyPong
             if (GameState.CurrentState == States.Intro)
             {
                 Intro.Update(gameTime);
+            }
+
+            if (GameState.CurrentState == States.F1tZIntro)
+            {
+                F1tZIntro.Update(gameTime);
             }
 
             if (GameState.CurrentState == States.Ingame)
@@ -115,6 +131,11 @@ namespace F1tZyPong
                 Intro.Draw(gameTime);
             }
 
+            if (GameState.CurrentState == States.F1tZIntro)
+            {
+                F1tZIntro.Draw(gameTime);
+            }
+
             if (GameState.CurrentState == States.Ingame)
             {
                 LeftPaddle.Draw(gameTime);
@@ -122,6 +143,11 @@ namespace F1tZyPong
                 BallInPaly.Draw(gameTime);
 
                 GameState.DrawScore(gameTime);
+            }
+
+            if (GameState.Debug == true)
+            {
+                
             }
 
             base.Draw(gameTime);

@@ -111,6 +111,7 @@
     <Compile Include="CollisonDetection.cs" />
     <Compile Include="DSIntro.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="F1tZLogo.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="KeyMap.cs" />
     <Compile Include="Paddle.cs" />

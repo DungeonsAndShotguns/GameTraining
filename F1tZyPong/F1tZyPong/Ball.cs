@@ -50,6 +50,7 @@ namespace F1tZyPong
 
                 Volcity.X *= -1;
             }
+
             if (Posistion.Y > MaxY || Posistion.Y < 0) 
             { Volcity.Y *= -1; }
                 
@@ -61,9 +62,12 @@ namespace F1tZyPong
 
             if (GameState.Debug == true)
             {
+                GameState.spriteBatch.DrawString(GameState.GUIFont, "Ball Volicity: " + this.Volcity.X, new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - 100, GameState.spriteBatch.GraphicsDevice.Viewport.Height - 20), Color.White);
+                GameState.spriteBatch.DrawString(GameState.GUIFont, "Ball Vert: " + this.Volcity.Y, new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - 100, GameState.spriteBatch.GraphicsDevice.Viewport.Height - 40), Color.White);
+
                 Texture2D FillBoundingBox = new Texture2D(GameState.spriteBatch.GraphicsDevice, 1, 1);
                 FillBoundingBox.SetData(new Color[] { Color.White });
-                GameState.spriteBatch.Draw(FillBoundingBox, this.BoundindBox, Color.Red);
+                GameState.spriteBatch.Draw(FillBoundingBox, this.BoundindBox, Color.Red);                
             }
         }
     }
