@@ -63,8 +63,11 @@ namespace F1tZyPong
             F1tZIntro = new F1tZLogo(this.Content);
 
             LeftPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleBlu"));
+            LeftPaddle.LoadAudio(Content.Load<SoundEffect>("Audio\\lefthit"));
             RightPaddle.LoadContent(Content.Load<Texture2D>("image\\paddleRed"));
+            RightPaddle.LoadAudio(Content.Load<SoundEffect>("Audio\\righthit"));
             BallInPaly.LoadContent(Content.Load<Texture2D>("image\\ballGrey"));
+            BallInPaly.LoadAudio(Content.Load<SoundEffect>("Audio\\score"));
 
             // load the font
             GameState.GUIFont = Content.Load<SpriteFont>("GUIFont");

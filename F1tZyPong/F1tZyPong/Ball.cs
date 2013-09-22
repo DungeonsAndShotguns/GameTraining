@@ -4,12 +4,20 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace F1tZyPong
 {
     public class Ball : Entity
     {
+        SoundEffect Score;
+
         public Ball() { }
+
+        public void LoadAudio(SoundEffect Score)
+        {
+            this.Score = Score;
+        }
 
         public override void LoadContent(Microsoft.Xna.Framework.Graphics.Texture2D TextureToAssign)
         {
@@ -49,6 +57,8 @@ namespace F1tZyPong
                 }
 
                 Volcity.X *= -1;
+
+                Score.Play();
             }
 
             if (Posistion.Y > MaxY || Posistion.Y < 0) 

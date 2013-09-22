@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace F1tZyPong
 {
     public class PaddleLeft : Entity
     {
         KeyboardState KeyState;
+        public SoundEffect Hit;
+
         public PaddleLeft() : base() { }
 
         /// <summary>
@@ -30,6 +30,11 @@ namespace F1tZyPong
             double newWidth = Image.Height * Math.Sin(Rotation) + Image.Width * Math.Cos(Rotation);
             double newHeight = Image.Height * Math.Cos(Rotation) + Image.Width * Math.Sin(Rotation);
             BoundindBox = new Rectangle((int)(Posistion.X) - 10, (int)(Posistion.Y), (int)(newWidth * Scale.X), (int)(newHeight * Scale.Y)); 
+        }
+
+        public void LoadAudio(SoundEffect Hit)
+        {
+            this.Hit = Hit;
         }
 
         public override void UnloadContent()
@@ -87,6 +92,8 @@ namespace F1tZyPong
     public class PaddleRight : Entity
     {
         KeyboardState KeyState;
+        public SoundEffect Hit;
+
         public PaddleRight() : base() { }
 
         /// <summary>
@@ -96,6 +103,7 @@ namespace F1tZyPong
         public override void LoadContent(Texture2D ContentToLoad)
         {
             this.Image = ContentToLoad;
+
             Scale = new Vector2(.52f);
             Rotation = 1.575f;
             Posistion = new Vector2(GameState.spriteBatch.GraphicsDevice.Viewport.Width - 10, 10);
@@ -105,6 +113,11 @@ namespace F1tZyPong
             double newWidth = Image.Height * Math.Sin(Rotation) + Image.Width * Math.Cos(Rotation);
             double newHeight = Image.Height * Math.Cos(Rotation) + Image.Width * Math.Sin(Rotation);
             BoundindBox = new Rectangle((int)(Posistion.X), (int)(Posistion.Y), (int)(newWidth * Scale.X), (int)(newHeight * Scale.Y)); 
+        }
+
+        public void LoadAudio(SoundEffect Hit)
+        {
+            this.Hit = Hit;
         }
 
         public override void UnloadContent()
