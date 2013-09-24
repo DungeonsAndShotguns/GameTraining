@@ -20,7 +20,7 @@ namespace F1tZyPong
 
                 ballToCheck.Posistion.X = (leftPaddle.Posistion.X + leftPaddle.BoundindBox.Width);// -rightPaddle.BoundindBox.Width;
 
-                if (ballToCheck.Volcity.X < 10 && ballToCheck.Volcity.X > -10)
+                if (ballToCheck.Volcity.X < 12 && ballToCheck.Volcity.X > -12)
                 {
                     ballToCheck.Volcity.X -= 0.5f;
                 }
@@ -57,7 +57,7 @@ namespace F1tZyPong
 
                 ballToCheck.Posistion.X = (rightPaddle.Posistion.X - rightPaddle.BoundindBox.Width) - rightPaddle.BoundindBox.Width;
 
-                if (ballToCheck.Volcity.X < 10 && ballToCheck.Volcity.X > -10)
+                if (ballToCheck.Volcity.X < 12 && ballToCheck.Volcity.X > -12)
                 {
                     ballToCheck.Volcity.X += 0.5f;
                 }

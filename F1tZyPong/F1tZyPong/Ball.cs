@@ -56,6 +56,30 @@ namespace F1tZyPong
                     GameState.RightScore += 1;
                 }
 
+                if (GameState.LeftScore == 5 || GameState.RightScore == 5)
+                {
+                    if (GameState.LeftScore == 5)
+                    {
+                        this.Posistion.X = GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2;
+                        this.Posistion.Y = GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2;
+                        this.Volcity.X = -3f;
+                        this.Volcity.Y = 0f;
+                        GameState.LeftWin += 1;
+                        GameState.LeftScore = 0;
+                        GameState.RightScore = 0;
+                    }
+                    else
+                    {
+                        this.Posistion.X = GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2;
+                        this.Posistion.Y = GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2;
+                        this.Volcity.X = 3f;
+                        this.Volcity.Y = 0f;
+                        GameState.Rightwin += 1;
+                        GameState.LeftScore = 0;
+                        GameState.RightScore = 0;
+                    }
+                }
+
                 Volcity.X *= -1;
 
                 Score.Play();

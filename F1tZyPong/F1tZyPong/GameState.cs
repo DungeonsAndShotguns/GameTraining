@@ -29,6 +29,8 @@ namespace F1tZyPong
 
         public static int LeftScore = 0;
         public static int RightScore = 0;
+        public static int LeftWin = 0;
+        public static int Rightwin = 0;
 
         public static SpriteFont GUIFont = null;
 
