@@ -22,6 +22,7 @@ namespace F1tZyPong
         PaddleRight RightPaddle = new PaddleRight();
         Ball BallInPaly = new Ball();
         MainMenu Main = null;
+        PauseMenu Pause = null;
 
         public Game1()
         {
@@ -37,7 +38,7 @@ namespace F1tZyPong
         /// </summary>
         protected override void Initialize()
         {
-            GameState.Debug = true;
+            //GameState.Debug = true;
 
             if (GameState.Debug == false)
             {
@@ -74,6 +75,7 @@ namespace F1tZyPong
             GameState.GUIFont = Content.Load<SpriteFont>("GUIFont");
 
             Main = new MainMenu(this, GameState.spriteBatch, GameState.GUIFont);
+            Pause = new PauseMenu(this, GameState.spriteBatch, GameState.GUIFont);
         }
 
         /// <summary>
@@ -108,7 +110,7 @@ namespace F1tZyPong
 
                 // Allows the game to exit
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || KeyState.IsKeyDown(Keys.Escape) == true)
-                    this.Exit();
+                    GameState.CurrentState = States.Pause;
 
                 LeftPaddle.Update(gameTime);
                 RightPaddle.Update(gameTime);
@@ -121,6 +123,11 @@ namespace F1tZyPong
             if (GameState.CurrentState == States.MainMenu)
             {
                 Main.Update(gameTime);
+            }
+
+            if (GameState.CurrentState == States.Pause)
+            {
+                Pause.Update(gameTime);
             }
 
             if (GameState.CurrentState == States.Exit)
@@ -162,6 +169,16 @@ namespace F1tZyPong
             if (GameState.CurrentState == States.MainMenu)
             {
                 Main.Draw(gameTime);
+            }
+
+            if (GameState.CurrentState == States.Pause)
+            {
+                LeftPaddle.Draw(gameTime);
+                RightPaddle.Draw(gameTime);
+                BallInPaly.Draw(gameTime);
+                GameState.DrawScore(gameTime);
+
+                Pause.Draw(gameTime);
             }
 
             if (GameState.Debug == true)

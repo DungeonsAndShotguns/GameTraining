@@ -10,7 +10,7 @@ namespace F1tZyPong
 
     public enum States
     {
-        Intro, F1tZIntro, MainMenu, Ingame, Exit
+        Intro, F1tZIntro, MainMenu, Ingame, Pause, Exit
     }
 
     /// <summary>

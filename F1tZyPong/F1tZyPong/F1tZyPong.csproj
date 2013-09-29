@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="CollisonDetection.cs" />
+    <Compile Include="PauseMenu.cs" />
     <Compile Include="DSIntro.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="F1tZLogo.cs" />
