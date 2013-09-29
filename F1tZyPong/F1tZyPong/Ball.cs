@@ -36,6 +36,13 @@ namespace F1tZyPong
             throw new NotImplementedException();
         }
 
+        public void Reset()
+        {
+            Posistion = new Vector2(GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2, GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2);
+
+            Volcity = new Vector2(3, 0);
+        }
+
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             this.Posistion += Volcity;

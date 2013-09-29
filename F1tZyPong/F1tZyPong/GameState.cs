@@ -32,6 +32,8 @@ namespace F1tZyPong
         public static int LeftWin = 0;
         public static int Rightwin = 0;
 
+        public static bool RestGame = false;
+
         public static SpriteFont GUIFont = null;
 
         /// <summary>
@@ -43,6 +45,14 @@ namespace F1tZyPong
         /// The gloabl spritebatch used to draw all grapihcs to the screen
         /// </summary>
         public static SpriteBatch spriteBatch;
+
+        public static void RestScore()
+        {
+            GameState.LeftScore = 0;
+            GameState.LeftWin = 0;
+            GameState.RightScore = 0;
+            GameState.Rightwin = 0;
+        }
 
         public static void DrawScore(GameTime gameTime)
         {

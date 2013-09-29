@@ -42,6 +42,11 @@ namespace F1tZyPong
             Image.Dispose();
         }
 
+        public void Rest()
+        {
+            Posistion = new Vector2(20, (GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2) - (25));
+        }
+
         public override void Update(GameTime gameTime)
         {
             KeyState = Keyboard.GetState();
@@ -123,6 +128,11 @@ namespace F1tZyPong
         public override void UnloadContent()
         {
             Image.Dispose();
+        }
+
+        public void Reset()
+        {
+            Posistion = new Vector2(GameState.spriteBatch.GraphicsDevice.Viewport.Width - 10, (GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2) - (25));
         }
 
         public override void Update(GameTime gameTime)

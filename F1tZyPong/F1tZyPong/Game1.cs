@@ -38,7 +38,7 @@ namespace F1tZyPong
         /// </summary>
         protected override void Initialize()
         {
-            //GameState.Debug = true;
+            GameState.Debug = true;
 
             if (GameState.Debug == false)
             {
@@ -135,6 +135,17 @@ namespace F1tZyPong
                 this.Exit();
             }
 
+            // game rest Logic
+            if (GameState.RestGame == true)
+            {
+                LeftPaddle.Rest();
+                RightPaddle.Reset();
+                BallInPaly.Reset();
+                GameState.RestScore();
+
+                GameState.RestGame = false;
+            }
+
             base.Update(gameTime);
         }
 
@@ -159,11 +170,11 @@ namespace F1tZyPong
 
             if (GameState.CurrentState == States.Ingame)
             {
+                GameState.DrawScore(gameTime);
+
                 LeftPaddle.Draw(gameTime);
                 RightPaddle.Draw(gameTime);
                 BallInPaly.Draw(gameTime);
-
-                GameState.DrawScore(gameTime);
             }
 
             if (GameState.CurrentState == States.MainMenu)

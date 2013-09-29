@@ -37,9 +37,9 @@ namespace F1tZyPong
             this.SpriteBatch = spritebatch;
             this.SpriteFont = spriteFont;
 
-            NewGame = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 100, 100F);
-            MainMenu = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 100, 150f);
-            Exit = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2)- 100, 200f);
+            NewGame = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 50, 100F);
+            MainMenu = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 50, 150f);
+            Exit = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2)- 50, 200f);
         }
 
         public override void Initialize()
@@ -79,6 +79,7 @@ namespace F1tZyPong
 
                 if (SelectedIndex == 1)
                 {
+                    GameState.RestGame = true;
                     GameState.CurrentState = States.MainMenu;
                 }
 
@@ -86,6 +87,11 @@ namespace F1tZyPong
                 {
                     GameState.CurrentState = States.Exit;
                 }
+            }
+
+            if (CurrentState.IsKeyDown(Keys.Escape) && OldState.IsKeyUp(Keys.Escape))
+            {
+                GameState.CurrentState = States.Ingame;
             }
 
             LastInteraction = gameTime.TotalGameTime;
