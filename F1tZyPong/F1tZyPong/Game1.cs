@@ -21,6 +21,7 @@ namespace F1tZyPong
         PaddleLeft LeftPaddle = new PaddleLeft();
         PaddleRight RightPaddle = new PaddleRight();
         Ball BallInPaly = new Ball();
+        MainMenu Main = null;
 
         public Game1()
         {
@@ -72,7 +73,7 @@ namespace F1tZyPong
             // load the font
             GameState.GUIFont = Content.Load<SpriteFont>("GUIFont");
 
-            
+            Main = new MainMenu(this, GameState.spriteBatch, GameState.GUIFont);
         }
 
         /// <summary>
@@ -117,6 +118,16 @@ namespace F1tZyPong
                 BallInPaly.Update(gameTime);
             }
 
+            if (GameState.CurrentState == States.MainMenu)
+            {
+                Main.Update(gameTime);
+            }
+
+            if (GameState.CurrentState == States.Exit)
+            {
+                this.Exit();
+            }
+
             base.Update(gameTime);
         }
 
@@ -146,6 +157,11 @@ namespace F1tZyPong
                 BallInPaly.Draw(gameTime);
 
                 GameState.DrawScore(gameTime);
+            }
+
+            if (GameState.CurrentState == States.MainMenu)
+            {
+                Main.Draw(gameTime);
             }
 
             if (GameState.Debug == true)

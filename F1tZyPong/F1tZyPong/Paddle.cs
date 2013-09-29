@@ -24,7 +24,7 @@ namespace F1tZyPong
 
             Scale = new Vector2(.5f);
             Rotation = 1.575f;
-            Posistion = new Vector2(20, 10);
+            Posistion = new Vector2(20, (GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2) - (25));
 
             //Cretate new rectagle for collison detection
             double newWidth = Image.Height * Math.Sin(Rotation) + Image.Width * Math.Cos(Rotation);
@@ -106,7 +106,7 @@ namespace F1tZyPong
 
             Scale = new Vector2(.52f);
             Rotation = 1.575f;
-            Posistion = new Vector2(GameState.spriteBatch.GraphicsDevice.Viewport.Width - 10, 10);
+            Posistion = new Vector2(GameState.spriteBatch.GraphicsDevice.Viewport.Width - 10, (GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2) - (25));
 
             BoundindBox = new Rectangle((int)Posistion.X, (int)Posistion.Y, Image.Width, Image.Height);
 

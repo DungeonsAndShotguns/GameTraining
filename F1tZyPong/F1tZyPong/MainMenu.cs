@@ -24,10 +24,11 @@ namespace F1tZyPong
         SpriteBatch SpriteBatch;
         SpriteFont SpriteFont;
 
-        Vector2 Position;
-        float Width = 0f;
-        float Height = 0f;
+        Vector2 NewGame = Vector2.Zero;
+        Vector2 ReplayIntros = Vector2.Zero;
+        Vector2 Exit = Vector2.Zero;
 
+        TimeSpan LastInteraction = new TimeSpan();
        
 
         public MainMenu(Game game, SpriteBatch spritebatch, SpriteFont spriteFont)
@@ -35,6 +36,10 @@ namespace F1tZyPong
         {
             this.SpriteBatch = spritebatch;
             this.SpriteFont = spriteFont;
+
+            NewGame = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 100, 100F);
+            ReplayIntros = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2)- 100, 150f);
+            Exit = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2)- 100, 200f);
         }
 
         public override void Initialize()
@@ -46,7 +51,7 @@ namespace F1tZyPong
         {
             CurrentState = Keyboard.GetState();
 
-            if (CurrentState.IsKeyDown(Keys.Down) == true)
+            if (CurrentState.IsKeyDown(Keys.Down) && OldState.IsKeyUp(Keys.Down))
             {
                 SelectedIndex++;
                 if (SelectedIndex == MenuText.Length)
@@ -55,7 +60,7 @@ namespace F1tZyPong
                 }
             }
 
-            if (CurrentState.IsKeyDown(Keys.Up) == true)
+            if (CurrentState.IsKeyDown(Keys.Up) && OldState.IsKeyUp(Keys.Up))
             {
                 SelectedIndex--;
                 if (SelectedIndex < 0)
@@ -64,11 +69,54 @@ namespace F1tZyPong
                 }
             }
 
+
+            if (CurrentState.IsKeyDown(Keys.Enter) && OldState.IsKeyUp(Keys.Enter))
+            {
+                if (SelectedIndex == 0)
+                {
+                    GameState.CurrentState = States.Ingame;
+                }
+
+                if (SelectedIndex == 1)
+                {
+                    GameState.CurrentState = States.Intro;
+                }
+
+                if (SelectedIndex == 2)
+                {
+                    GameState.CurrentState = States.Exit;
+                }
+            }
+
+            LastInteraction = gameTime.TotalGameTime;
+            OldState = CurrentState;
+            
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
+            if (SelectedIndex == 0)
+            {
+                SpriteBatch.DrawString(SpriteFont, "New Game", NewGame, Hilight);
+                SpriteBatch.DrawString(SpriteFont, "Replay Intros", ReplayIntros, Normal);
+                SpriteBatch.DrawString(SpriteFont, "Exit", Exit, Normal);
+            }
+
+            if (SelectedIndex == 1)
+            {
+                SpriteBatch.DrawString(SpriteFont, "New Game", NewGame, Normal);
+                SpriteBatch.DrawString(SpriteFont, "Replay Intros", ReplayIntros, Hilight);
+                SpriteBatch.DrawString(SpriteFont, "Exit", Exit, Normal);
+            }
+
+            if (SelectedIndex == 2)
+            {
+                SpriteBatch.DrawString(SpriteFont, "New Game", NewGame, Normal);
+                SpriteBatch.DrawString(SpriteFont, "Replay Intros", ReplayIntros, Normal);
+                SpriteBatch.DrawString(SpriteFont, "Exit", Exit, Hilight);
+            }
+
             base.Draw(gameTime);
         }
     }

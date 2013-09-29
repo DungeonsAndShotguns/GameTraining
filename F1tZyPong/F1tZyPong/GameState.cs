@@ -10,7 +10,7 @@ namespace F1tZyPong
 
     public enum States
     {
-        Intro, F1tZIntro, Ingame, Exit
+        Intro, F1tZIntro, MainMenu, Ingame, Exit
     }
 
     /// <summary>
@@ -48,8 +48,13 @@ namespace F1tZyPong
         {
             if (GUIFont != null)
             {
+                // Draw current score
                 spriteBatch.DrawString(GUIFont, "Left: " + LeftScore, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) / 2) - 10, 10), Color.White);
-                spriteBatch.DrawString(GUIFont, "Right: " + RightScore, new Vector2((((spriteBatch.GraphicsDevice.Viewport.Width / 2) * 2) / 2) + 100, 10), Color.White);
+                spriteBatch.DrawString(GUIFont, "Right: " + RightScore, new Vector2((((spriteBatch.GraphicsDevice.Viewport.Width / 2) * 2) / 2) + 200, 10), Color.White);
+
+                // Draw current wins
+                spriteBatch.DrawString(GUIFont, "Wins: " + LeftWin, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) / 2) - 110, 10), Color.White);
+                spriteBatch.DrawString(GUIFont, "Wins: " + Rightwin, new Vector2((((spriteBatch.GraphicsDevice.Viewport.Width / 2) * 2) / 2) + 100, 10), Color.White);
             }
             else
             {

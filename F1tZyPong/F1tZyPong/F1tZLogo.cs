@@ -57,7 +57,7 @@ namespace F1tZyPong
 
             if (gameTime.TotalGameTime > EndIntroTime)
             {
-                GameState.CurrentState = States.Ingame;
+                GameState.CurrentState = States.MainMenu;
             }
 
             if (gameTime.TotalGameTime > StartTime.Add(new TimeSpan(0, 0, 0, 0, 100)))
