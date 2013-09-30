@@ -27,26 +27,61 @@ namespace F1tZyPong
 
                 ballToCheck.Volcity.X = (-1 * ballToCheck.Volcity.X);
 
-                if (ballToCheck.Volcity.Y == 0)
+
+                // setting the Y based on paddle segments
+                if (GameState.NewPhys == true)
                 {
-                    if (Rand.Next(0, 10) < 5)
+                    if (ballToCheck.BoundindBox.Intersects(leftPaddle.TopCorner) == true)
+                    {
+                        ballToCheck.Volcity.Y = -2;
+                        return ballToCheck;
+                    }
+
+                    if (ballToCheck.BoundindBox.Intersects(leftPaddle.BottomCorner) == true)
+                    {
+                        ballToCheck.Volcity.Y = 2;
+                        return ballToCheck;
+                    }
+
+                    if (ballToCheck.BoundindBox.Intersects(leftPaddle.TopCenter) == true)
                     {
                         ballToCheck.Volcity.Y = -1;
                     }
-                    else
+
+                    if (ballToCheck.BoundindBox.Intersects(leftPaddle.BottemCenter) == true)
                     {
                         ballToCheck.Volcity.Y = 1;
+                    }
+
+                    if (ballToCheck.BoundindBox.Intersects(leftPaddle.Middle) == true)
+                    {
+                        ballToCheck.Volcity.Y = 0;
+                        return ballToCheck;
                     }
                 }
                 else
                 {
-                    if (Rand.Next(0, 10) < 5)
+                    if (ballToCheck.Volcity.Y == 0)
                     {
-                        ballToCheck.Volcity.Y = -1;
+                        if (Rand.Next(0, 10) < 5)
+                        {
+                            ballToCheck.Volcity.Y = -1;
+                        }
+                        else
+                        {
+                            ballToCheck.Volcity.Y = 1;
+                        }
                     }
                     else
                     {
-                        ballToCheck.Volcity.Y = 1;
+                        if (Rand.Next(0, 10) < 5)
+                        {
+                            ballToCheck.Volcity.Y = -1;
+                        }
+                        else
+                        {
+                            ballToCheck.Volcity.Y = 1;
+                        }
                     }
                 }
             }
@@ -64,28 +99,60 @@ namespace F1tZyPong
                 
                 ballToCheck.Volcity.X = (-1 * ballToCheck.Volcity.X);
 
-                
-
-                if (ballToCheck.Volcity.Y == 0)
+                if (GameState.NewPhys == true)
                 {
-                    if (Rand.Next(0, 10) < 5)
+                    if (ballToCheck.BoundindBox.Intersects(rightPaddle.TopCorner) == true)
+                    {
+                        ballToCheck.Volcity.Y = -2;
+                        return ballToCheck;
+                    }
+
+                    if (ballToCheck.BoundindBox.Intersects(rightPaddle.BottomCorner) == true)
+                    {
+                        ballToCheck.Volcity.Y = 2;
+                        return ballToCheck;
+                    }
+
+                    if (ballToCheck.BoundindBox.Intersects(rightPaddle.TopCenter) == true)
                     {
                         ballToCheck.Volcity.Y = -1;
                     }
-                    else
+
+                    if (ballToCheck.BoundindBox.Intersects(rightPaddle.BottemCenter) == true)
                     {
                         ballToCheck.Volcity.Y = 1;
+                    }
+
+                    if (ballToCheck.BoundindBox.Intersects(rightPaddle.Middle) == true)
+                    {
+                        ballToCheck.Volcity.Y = 0;
+                        return ballToCheck;
                     }
                 }
                 else
                 {
-                    if (Rand.Next(0, 10) < 5)
+
+                    if (ballToCheck.Volcity.Y == 0)
                     {
-                        ballToCheck.Volcity.Y = -1;
+                        if (Rand.Next(0, 10) < 5)
+                        {
+                            ballToCheck.Volcity.Y = -1;
+                        }
+                        else
+                        {
+                            ballToCheck.Volcity.Y = 1;
+                        }
                     }
                     else
                     {
-                        ballToCheck.Volcity.Y = 1;
+                        if (Rand.Next(0, 10) < 5)
+                        {
+                            ballToCheck.Volcity.Y = -1;
+                        }
+                        else
+                        {
+                            ballToCheck.Volcity.Y = 1;
+                        }
                     }
                 }
             } 

@@ -33,6 +33,7 @@ namespace F1tZyPong
         public static int Rightwin = 0;
 
         public static bool RestGame = false;
+        public static bool NewPhys = true;
 
         public static SpriteFont GUIFont = null;
 

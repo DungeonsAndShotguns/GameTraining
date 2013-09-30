@@ -50,7 +50,7 @@ namespace F1tZyPong
             this.BoundindBox.Y = (int)Posistion.Y;
 
             float MaxX = GameState.spriteBatch.GraphicsDevice.Viewport.Width - Image.Width;
-            float MaxY = GameState.spriteBatch.GraphicsDevice.Viewport.Height - Image.Height;
+            float MaxY = GameState.spriteBatch.GraphicsDevice.Viewport.Height - Image.Height / 2;
 
             if (Posistion.X > MaxX || Posistion.X < 0) 
             {
