@@ -38,7 +38,7 @@ namespace F1tZyPong
         /// </summary>
         protected override void Initialize()
         {
-            //GameState.Debug = true;
+            GameState.Debug = true;
 
             if (GameState.Debug == false)
             {

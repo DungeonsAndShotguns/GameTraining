@@ -13,6 +13,8 @@ namespace F1tZyPong
 
         public PaddleLeft() : base() { }
 
+        GamePadState PreviousPadState;
+
         public Rectangle TopCorner = new Rectangle();
         public Rectangle TopOuter = new Rectangle();
         public Rectangle TopCenter = new Rectangle();
@@ -67,13 +69,20 @@ namespace F1tZyPong
         {
             KeyState = Keyboard.GetState();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                GameState.CurrentState = States.Exit;
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            //    GameState.CurrentState = States.Exit;
             if (KeyState.IsKeyDown(Keys.S)) { this.Volcity.Y = 7; GameState.KMap.S = true;}
             if (KeyState.IsKeyUp(Keys.S) && GameState.KMap.S == true) { this.Volcity.Y += -7; GameState.KMap.S = false;}
             if (KeyState.IsKeyDown(Keys.W)) { this.Volcity.Y = -7; GameState.KMap.W = true; }
             if (KeyState.IsKeyUp(Keys.W) && GameState.KMap.W == true) { this.Volcity.Y += 7; GameState.KMap.W = false; }
 
+            if (GamePad.GetCapabilities(PlayerIndex.One).IsConnected == true)
+            {
+                if (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed) { this.Volcity.Y = 7; GameState.KMap.S = true; }
+                if (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed) { this.Volcity.Y = -7; GameState.KMap.W = true; }
+
+                PreviousPadState = GamePad.GetState(PlayerIndex.One);
+            }
            
             Posistion.Y += Volcity.Y;
             
@@ -137,6 +146,8 @@ namespace F1tZyPong
         KeyboardState KeyState;
         public SoundEffect Hit;
 
+        GamePadState PreviousPadState;
+
         public Rectangle TopCorner = new Rectangle();
         public Rectangle TopOuter = new Rectangle();
         public Rectangle TopCenter = new Rectangle();
@@ -192,12 +203,20 @@ namespace F1tZyPong
         {
             KeyState = Keyboard.GetState();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                GameState.CurrentState = States.Exit;
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            //    GameState.CurrentState = States.Exit;
             if (KeyState.IsKeyDown(Keys.Down)) { this.Volcity.Y = 7; GameState.KMap.ArrowDown = true; }
             if (KeyState.IsKeyUp(Keys.Down) && GameState.KMap.ArrowDown == true) { this.Volcity.Y += -7; GameState.KMap.ArrowDown = false; }
             if (KeyState.IsKeyDown(Keys.Up)) { this.Volcity.Y = -7; GameState.KMap.ArrowUp = true; }
             if (KeyState.IsKeyUp(Keys.Up) && GameState.KMap.ArrowUp == true) { this.Volcity.Y += 7; GameState.KMap.ArrowUp = false; }
+
+            if (GamePad.GetCapabilities(PlayerIndex.Two).IsConnected == true)
+            {
+                if (GamePad.GetState(PlayerIndex.Two).DPad.Down == ButtonState.Pressed) { this.Volcity.Y = 7; GameState.KMap.S = true; }
+                if (GamePad.GetState(PlayerIndex.Two).DPad.Up == ButtonState.Pressed) { this.Volcity.Y = -7; GameState.KMap.W = true; }
+
+                PreviousPadState = GamePad.GetState(PlayerIndex.One);
+            }
 
             Posistion.X += Volcity.X;
             Posistion.Y += Volcity.Y;

@@ -21,6 +21,8 @@ namespace F1tZyPong
         KeyboardState CurrentState;
         KeyboardState OldState;
 
+        GamePadState PlayOneState;
+
         SpriteBatch SpriteBatch;
         SpriteFont SpriteFont;
 
@@ -28,7 +30,7 @@ namespace F1tZyPong
         Vector2 ReplayIntros = Vector2.Zero;
         Vector2 Exit = Vector2.Zero;
 
-        TimeSpan LastInteraction = new TimeSpan();
+        //TimeSpan LastInteraction = new TimeSpan();
        
 
         public MainMenu(Game game, SpriteBatch spritebatch, SpriteFont spriteFont)
@@ -69,7 +71,6 @@ namespace F1tZyPong
                 }
             }
 
-
             if (CurrentState.IsKeyDown(Keys.Enter) && OldState.IsKeyUp(Keys.Enter))
             {
                 if (SelectedIndex == 0)
@@ -88,7 +89,68 @@ namespace F1tZyPong
                 }
             }
 
-            LastInteraction = gameTime.TotalGameTime;
+            if(GamePad.GetCapabilities(PlayerIndex.One).IsConnected)
+            {
+                if (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed && PlayOneState.DPad.Down == ButtonState.Released)
+                {
+                    SelectedIndex++;
+                    if (SelectedIndex == MenuText.Length)
+                    {
+                        SelectedIndex = 0;
+                    }
+                }
+
+                if (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed && PlayOneState.DPad.Up == ButtonState.Released)
+                {
+                    SelectedIndex--;
+                    if (SelectedIndex < 0)
+                    {
+                        SelectedIndex = MenuText.Length - 1;
+                    }
+                }
+
+                if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+                {
+                    if (SelectedIndex == 0)
+                    {
+                        GameState.CurrentState = States.Ingame;
+                    }
+
+                    if (SelectedIndex == 1)
+                    {
+                        GameState.CurrentState = States.Intro;
+                    }
+
+                    if (SelectedIndex == 2)
+                    {
+                        GameState.CurrentState = States.Exit;
+                    }
+                }
+                
+                /* My 360 contoller seems to be a bit broken, I can only use the D Pad
+                if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0 && GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y >= 0)
+                {
+                    SelectedIndex++;
+                    if (SelectedIndex == MenuText.Length)
+                    {
+                        SelectedIndex = 0;
+                    }
+                }
+
+                if (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed && PlayOneState.DPad.Down == ButtonState.Released)
+                {
+                    SelectedIndex--;
+                    if (SelectedIndex < 0)
+                    {
+                        SelectedIndex = MenuText.Length - 1;
+                    }
+                }
+                 */
+
+                PlayOneState = GamePad.GetState(PlayerIndex.One);
+            }
+
+            //LastInteraction = gameTime.TotalGameTime;
             OldState = CurrentState;
             
             base.Update(gameTime);
@@ -116,6 +178,9 @@ namespace F1tZyPong
                 SpriteBatch.DrawString(SpriteFont, "Replay Intros", ReplayIntros, Normal);
                 SpriteBatch.DrawString(SpriteFont, "Exit", Exit, Hilight);
             }
+
+            //SpriteBatch.DrawString(SpriteFont, "X: " + GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X.ToString() + " Y: " + GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X.ToString(),
+            //    new Vector2(GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2, GameState.spriteBatch.GraphicsDevice.Viewport.Height - 20), Color.White);
 
             base.Draw(gameTime);
         }
