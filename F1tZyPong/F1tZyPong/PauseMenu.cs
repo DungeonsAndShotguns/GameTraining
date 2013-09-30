@@ -13,7 +13,7 @@ namespace F1tZyPong
     public class PauseMenu : Microsoft.Xna.Framework.DrawableGameComponent
     {
         int SelectedIndex;
-        string[] MenuText = { "Resume", "Main Menu", "Exit"};
+        string[] MenuText = { "Resume", "Main Menu", "Old Collision Detection", "Debug Mode" ,"Exit"};
 
         Color Normal = Color.White;
         Color Hilight = Color.Red;
@@ -26,6 +26,8 @@ namespace F1tZyPong
 
         Vector2 NewGame = Vector2.Zero;
         Vector2 MainMenu = Vector2.Zero;
+        Vector2 ColDet = Vector2.Zero;
+        Vector2 DebugMode = Vector2.Zero;
         Vector2 Exit = Vector2.Zero;
 
         TimeSpan LastInteraction = new TimeSpan();
@@ -39,7 +41,9 @@ namespace F1tZyPong
 
             NewGame = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 50, 100F);
             MainMenu = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 50, 150f);
-            Exit = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2)- 50, 200f);
+            ColDet = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2)- 50, 200f);
+            DebugMode = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 50, 250f);
+            Exit = new Vector2((spritebatch.GraphicsDevice.Viewport.Width / 2) - 50, 300f);
         }
 
         public override void Initialize()
@@ -85,6 +89,30 @@ namespace F1tZyPong
 
                 if (SelectedIndex == 2)
                 {
+                    if (GameState.NewPhys == true)
+                    {
+                        GameState.NewPhys = false;
+                    }
+                    else
+                    {
+                        GameState.NewPhys = true;
+                    }
+                }
+
+                if (SelectedIndex == 3)
+                {
+                    if (GameState.Debug == false)
+                    {
+                        GameState.Debug = true;
+                    }
+                    else
+                    {
+                        GameState.Debug = false;
+                    }
+                }
+
+                if (SelectedIndex == 4)
+                {
                     GameState.CurrentState = States.Exit;
                 }
             }
@@ -102,25 +130,58 @@ namespace F1tZyPong
 
         public override void Draw(GameTime gameTime)
         {
+            if (GameState.NewPhys == true)
+            {
+                MenuText[2] = "Old Collision Detection";
+            }
+            else
+            {
+                MenuText[2] = "New Collision Detection";
+            }
+
             if (SelectedIndex == 0)
             {
                 SpriteBatch.DrawString(SpriteFont, MenuText[0], NewGame, Hilight);
                 SpriteBatch.DrawString(SpriteFont, MenuText[1], MainMenu, Normal);
-                SpriteBatch.DrawString(SpriteFont, MenuText[2], Exit, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[2], ColDet, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[3], DebugMode, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[4], Exit, Normal);
             }
 
             if (SelectedIndex == 1)
             {
                 SpriteBatch.DrawString(SpriteFont, MenuText[0], NewGame, Normal);
                 SpriteBatch.DrawString(SpriteFont, MenuText[1], MainMenu, Hilight);
-                SpriteBatch.DrawString(SpriteFont, MenuText[2], Exit, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[2], ColDet, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[3], DebugMode, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[4], Exit, Normal);
             }
 
             if (SelectedIndex == 2)
             {
                 SpriteBatch.DrawString(SpriteFont, MenuText[0], NewGame, Normal);
                 SpriteBatch.DrawString(SpriteFont, MenuText[1], MainMenu, Normal);
-                SpriteBatch.DrawString(SpriteFont, MenuText[2], Exit, Hilight);
+                SpriteBatch.DrawString(SpriteFont, MenuText[2], ColDet, Hilight);
+                SpriteBatch.DrawString(SpriteFont, MenuText[3], DebugMode, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[4], Exit, Normal);
+            }
+
+            if (SelectedIndex == 3)
+            {
+                SpriteBatch.DrawString(SpriteFont, MenuText[0], NewGame, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[1], MainMenu, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[2], ColDet, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[3], DebugMode, Hilight);
+                SpriteBatch.DrawString(SpriteFont, MenuText[4], Exit, Normal);
+            }
+
+            if (SelectedIndex == 4)
+            {
+                SpriteBatch.DrawString(SpriteFont, MenuText[0], NewGame, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[1], MainMenu, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[2], ColDet, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[3], DebugMode, Normal);
+                SpriteBatch.DrawString(SpriteFont, MenuText[4], Exit, Hilight);
             }
 
             base.Draw(gameTime);
