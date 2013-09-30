@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace F1tZyPong
 {
@@ -46,6 +47,14 @@ namespace F1tZyPong
 
         public void Update(GameTime gameTime)
         {
+            if (gameTime.TotalGameTime > StartTime.Add(new TimeSpan(0, 0, 0, 0, 500)))
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+                {
+                    GameState.CurrentState = States.MainMenu;
+                }
+            }
+
             if (SoundPlayed == false)
             {
                 StartTime = gameTime.TotalGameTime;

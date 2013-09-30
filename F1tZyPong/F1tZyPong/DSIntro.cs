@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Input;
 
 namespace F1tZyPong
 {
@@ -51,6 +52,15 @@ namespace F1tZyPong
 
         public void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+            {
+                GameState.CurrentState = States.F1tZIntro;
+
+                GameState.graphics.PreferredBackBufferHeight = 480;
+                GameState.graphics.PreferredBackBufferWidth = 800;
+                GameState.graphics.ApplyChanges();
+            }
+
             if (SoundPalyed == false)
             {
                 IntroSound.Play();
