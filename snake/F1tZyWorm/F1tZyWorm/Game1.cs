@@ -16,12 +16,11 @@ namespace F1tZyWorm
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        Worm WormInPaly = new Worm();
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Renderers.graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -33,7 +32,10 @@ namespace F1tZyWorm
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            if (States.FullScreen == true)
+            {
+                Renderers.graphics.ToggleFullScreen();
+            }
 
             base.Initialize();
         }
@@ -45,9 +47,9 @@ namespace F1tZyWorm
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            Renderers.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            WormInPaly = new Worm(States.WormStartPos, this.Content.Load<Texture2D>("Worm\\Worm"));
         }
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace F1tZyWorm
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
             // TODO: Add your update logic here
@@ -81,11 +83,14 @@ namespace F1tZyWorm
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+            Renderers.spriteBatch.Begin();
 
-            // TODO: Add your drawing code here
+            WormInPaly.Draw(gameTime);
 
             base.Draw(gameTime);
+
+            Renderers.spriteBatch.End();
         }
     }
 }

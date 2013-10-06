@@ -18,5 +18,10 @@ namespace F1tZyWorm
             // Set the initial Volicity
             this.Volicity = new Vector2(3, 0);
         }
+
+        public override void Draw(GameTime gmaeTime)
+        {
+            Renderers.spriteBatch.Draw(this.Image, Position, Color.White);
+        }
     }
 }

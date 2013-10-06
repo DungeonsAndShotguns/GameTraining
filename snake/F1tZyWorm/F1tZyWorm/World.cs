@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace F1tZyWorm
 {
@@ -17,6 +19,13 @@ namespace F1tZyWorm
     /// </summary>
     public static class States
     {
+        public static Vector2 WormStartPos = new Vector2(10, 10);
+        public static bool FullScreen = true;
+    }
 
+    public static class Renderers
+    {
+        public static GraphicsDeviceManager graphics;
+        public static SpriteBatch spriteBatch;
     }
 }
