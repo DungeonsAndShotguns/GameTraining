@@ -17,6 +17,7 @@ namespace F1tZyWorm
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         Worm WormInPaly = new Worm();
+        World GameWorld = new World();
 
         public Game1()
         {
@@ -49,7 +50,12 @@ namespace F1tZyWorm
             // Create a new SpriteBatch, which can be used to draw textures.
             Renderers.spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // instaiate our hero
             WormInPaly = new Worm(States.WormStartPos, this.Content.Load<Texture2D>("Worm\\Worm"));
+
+            // Load up the graphics for quick reuse
+            States.WormDefaultImage = this.Content.Load<Texture2D>("Worm\\Worm");
+            States.FoodDefaultImage = this.Content.Load<Texture2D>("Food\\Food");
         }
 
         /// <summary>
@@ -72,7 +78,8 @@ namespace F1tZyWorm
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            // TODO: Add your update logic here
+            GameWorld.Update(gameTime);
+            WormInPaly.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -86,6 +93,7 @@ namespace F1tZyWorm
             GraphicsDevice.Clear(Color.Black);
             Renderers.spriteBatch.Begin();
 
+            GameWorld.Draw(gameTime);
             WormInPaly.Draw(gameTime);
 
             base.Draw(gameTime);

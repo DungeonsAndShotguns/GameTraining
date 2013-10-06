@@ -49,8 +49,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Food\ballGrey.png">
-      <Name>ballGrey</Name>
+    <Compile Include="Food\Food.png">
+      <Name>Food</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
