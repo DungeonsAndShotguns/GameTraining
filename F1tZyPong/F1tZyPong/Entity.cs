@@ -15,7 +15,7 @@ namespace F1tZyPong
         Rectangle BoundingBox = new Rectangle();
         public float Rotation = 0f;
         public Vector2 Scale = Vector2.Zero;
-        public Rectangle BoundindBox = new Rectangle();
+        public Rectangle BoundindBox = new Rectangle(); /// WHY
 
         public Entity() { }
 
