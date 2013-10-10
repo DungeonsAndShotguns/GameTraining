@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1tZyPong", "F1tZyPong\F1tZyPong\F1tZyPong.csproj", "{285BD7DF-2B7E-4022-8FD4-1D6E0D9B768F}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "F1tZyPongContent", "F1tZyPong\F1tZyPongContent\F1tZyPongContent.contentproj", "{0D66F523-6EF6-4E6E-B46B-9E49D196CBCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1tZyPongContent", "F1tZyPong\F1tZyPongContent\F1tZyPongContent.contentproj", "{0D66F523-6EF6-4E6E-B46B-9E49D196CBCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinuxPong", "LinuxPong\LinuxPong.csproj", "{C323C06A-17F7-4DE9-A939-7DA19280D482}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{285BD7DF-2B7E-4022-8FD4-1D6E0D9B768F}.Release|x86.Build.0 = Release|x86
 		{0D66F523-6EF6-4E6E-B46B-9E49D196CBCD}.Debug|x86.ActiveCfg = Debug|x86
 		{0D66F523-6EF6-4E6E-B46B-9E49D196CBCD}.Release|x86.ActiveCfg = Release|x86
+		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Debug|x86.ActiveCfg = Debug|x86
+		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Debug|x86.Build.0 = Debug|x86
+		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Release|x86.ActiveCfg = Release|x86
+		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
