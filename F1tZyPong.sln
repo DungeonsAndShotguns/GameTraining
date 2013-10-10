@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1tZyPongContent", "F1tZyPo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinuxPong", "LinuxPong\LinuxPong.csproj", "{C323C06A-17F7-4DE9-A939-7DA19280D482}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OGLPong", "OGLPong\OGLPong.csproj", "{21B71002-9886-46E2-9208-A9299BC512E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -23,6 +25,10 @@ Global
 		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Debug|x86.Build.0 = Debug|x86
 		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Release|x86.ActiveCfg = Release|x86
 		{C323C06A-17F7-4DE9-A939-7DA19280D482}.Release|x86.Build.0 = Release|x86
+		{21B71002-9886-46E2-9208-A9299BC512E6}.Debug|x86.ActiveCfg = Debug|x86
+		{21B71002-9886-46E2-9208-A9299BC512E6}.Debug|x86.Build.0 = Debug|x86
+		{21B71002-9886-46E2-9208-A9299BC512E6}.Release|x86.ActiveCfg = Release|x86
+		{21B71002-9886-46E2-9208-A9299BC512E6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
