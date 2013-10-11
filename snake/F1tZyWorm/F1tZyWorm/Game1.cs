@@ -33,7 +33,9 @@ namespace F1tZyWorm
         /// </summary>
         protected override void Initialize()
         {
-            if (States.FullScreen == true)
+            //States.Debug = true;
+
+            if (States.FullScreen == true && States.Debug == false)
             {
                 Renderers.graphics.ToggleFullScreen();
             }

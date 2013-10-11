@@ -38,7 +38,11 @@ namespace F1tZyWorm
     public static class States
     {
         public static Vector2 WormStartPos = new Vector2(10, 10);
+
         public static bool FullScreen = true;
+
+        public static bool Debug = false;
+
         public static KeyboardState PreviousKeyState = new KeyboardState();
 
         public static float WormSpeed = 1;

@@ -15,6 +15,8 @@ namespace F1tZyWorm
         {
             // Set the initial Volicity
             this.Volicity = new Vector2(States.WormSpeed, 0);
+
+            this.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Image.Width, Image.Height);
         }
 
         public override void Update(GameTime gameTime)
