@@ -12,7 +12,7 @@ namespace F1tZyWorm
         public Vector2 Position { get; set; }
         public Vector2 Volicity { get; set; }
         public Texture2D Image { get; set; }
-        public Rectangle BoundingBox { get; set; }
+        public Rectangle BoundingBox = new Rectangle();
 
         public Entitty() { }
 

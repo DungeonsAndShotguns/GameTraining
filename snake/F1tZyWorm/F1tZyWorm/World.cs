@@ -30,6 +30,28 @@ namespace F1tZyWorm
                 CurrentBit.Draw(gameTime);
             }
         }
+
+        public void CollsionDetection(Worm WormHead)
+        {
+            for(int Count = 0; Count < FoodBits.Count; Count++)
+            {
+                if (WormHead.BoundingBox.Intersects(FoodBits[Count].BoundingBox))
+                {
+                    FoodBits.RemoveAt(Count);
+                    States.FoodBitsCollected++;
+                }
+            }
+        }
+
+        public static Vector2 Point(Point location)
+        {
+            return new Vector2(location.X * 16 + 8);
+        }
+    }
+
+    public enum GameStates
+    {
+        Exit, Ingame, MainMenu, PasueMenu
     }
 
     /// <summary>
@@ -37,6 +59,8 @@ namespace F1tZyWorm
     /// </summary>
     public static class States
     {
+        public static GameStates CurrentState = GameStates.Ingame;
+
         public static Vector2 WormStartPos = new Vector2(10, 10);
 
         public static bool FullScreen = true;
@@ -49,6 +73,8 @@ namespace F1tZyWorm
         public static Texture2D WormDefaultImage;
 
         public static Texture2D FoodDefaultImage;
+
+        public static int FoodBitsCollected = 0;
     }
 
     /// <summary>

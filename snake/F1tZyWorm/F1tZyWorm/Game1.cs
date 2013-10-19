@@ -16,6 +16,7 @@ namespace F1tZyWorm
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        GUI GUIToDisplay = new GUI();
         Worm WormInPaly = new Worm();
         World GameWorld = new World();
 
@@ -33,7 +34,7 @@ namespace F1tZyWorm
         /// </summary>
         protected override void Initialize()
         {
-            //States.Debug = true;
+            States.Debug = true;
 
             if (States.FullScreen == true && States.Debug == false)
             {
@@ -51,6 +52,9 @@ namespace F1tZyWorm
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             Renderers.spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // init the gui
+            GUIToDisplay = new GUI(this.Content.Load<SpriteFont>("GUI"));
 
             // instaiate our hero
             WormInPaly = new Worm(States.WormStartPos, this.Content.Load<Texture2D>("Worm\\Worm"));
@@ -83,6 +87,10 @@ namespace F1tZyWorm
             GameWorld.Update(gameTime);
             WormInPaly.Update(gameTime);
 
+            GameWorld.CollsionDetection(WormInPaly);
+
+            GUIToDisplay.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -95,6 +103,7 @@ namespace F1tZyWorm
             GraphicsDevice.Clear(Color.Black);
             Renderers.spriteBatch.Begin();
 
+            GUIToDisplay.Darw(gameTime);
             GameWorld.Draw(gameTime);
             WormInPaly.Draw(gameTime);
 

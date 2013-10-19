@@ -49,11 +49,23 @@ namespace F1tZyWorm
 
             // update the worms position (heads position actully)
             this.Position += Volicity;
+
+            BoundingBox.X = (int)this.Position.X;
+            BoundingBox.Y = (int)this.Position.Y;
+                //.Location = (new Point((int)this.Position.X, (int)this.Position.Y));
         }
 
         public override void Draw(GameTime gmaeTime)
         {
             Renderers.spriteBatch.Draw(this.Image, Position, Color.White);
+
+            if (States.Debug == true)
+            {
+                Texture2D FillBoundingBox = new Texture2D(Renderers.spriteBatch.GraphicsDevice, 1, 1);
+                FillBoundingBox.SetData(new Color[] { Color.White });
+                Renderers.spriteBatch.Draw(FillBoundingBox, this.BoundingBox, Color.Red);
+                
+            }
         }
     }
 }

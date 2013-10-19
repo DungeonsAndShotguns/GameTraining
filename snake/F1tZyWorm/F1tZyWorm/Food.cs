@@ -11,15 +11,24 @@ namespace F1tZyWorm
     {
         public Food() { }
 
+        
+
         public Food(Vector2 initPos, Texture2D entImage)
             : base(initPos, entImage)
         {
-
+            this.BoundingBox = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.Image.Width, this.Image.Height);
         }
 
         public override void Draw(GameTime gmaeTime)
         {
             Renderers.spriteBatch.Draw(this.Image, Position, Color.White);
+
+            if (States.Debug == true)
+            {
+                Texture2D FillBoundingBox = new Texture2D(Renderers.spriteBatch.GraphicsDevice, 1, 1);
+                FillBoundingBox.SetData(new Color[] { Color.White });
+                Renderers.spriteBatch.Draw(FillBoundingBox, this.BoundingBox, Color.Blue);
+            }
         }
     }
 }
