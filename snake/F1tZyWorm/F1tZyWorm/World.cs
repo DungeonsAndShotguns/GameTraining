@@ -61,7 +61,7 @@ namespace F1tZyWorm
     {
         public static GameStates CurrentState = GameStates.Ingame;
 
-        public static Vector2 WormStartPos = new Vector2(10, 10);
+        public static Vector2 WormStartPos = new Vector2(0, 0);
 
         public static bool FullScreen = true;
 

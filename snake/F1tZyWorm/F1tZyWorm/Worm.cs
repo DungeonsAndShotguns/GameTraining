@@ -2,12 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace F1tZyWorm
 {
     public class Worm : Entitty
     {
         public List<WormBit> WormBody { get; set; } // the body of the worm minus the head
+        TimeSpan LastUpdate = new TimeSpan();
 
         public Worm() { }
 
@@ -48,7 +50,11 @@ namespace F1tZyWorm
             States.PreviousKeyState = Keyboard.GetState();
 
             // update the worms position (heads position actully)
-            this.Position += Volicity;
+            if (gameTime.TotalGameTime.Subtract(LastUpdate) >= (new TimeSpan(0,0,0,0,275)))
+            {
+                this.Position += Volicity * this.BoundingBox.Height;
+                this.LastUpdate = gameTime.TotalGameTime;
+            }
 
             BoundingBox.X = (int)this.Position.X;
             BoundingBox.Y = (int)this.Position.Y;
