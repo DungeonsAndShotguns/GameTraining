@@ -21,6 +21,11 @@ namespace F1tZyWorm
             this.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Image.Width, Image.Height);
         }
 
+        public void AddWormBit()
+        {
+            WormBody.Add(new WormBit(this.Position, States.WormDefaultImage, this));
+        }
+
         public override void Update(GameTime gameTime)
         {
             // o the grate and wonderful control scheme

@@ -31,7 +31,7 @@ namespace F1tZyWorm
             }
         }
 
-        public void CollsionDetection(Worm WormHead)
+        public Worm CollsionDetection(Worm WormHead)
         {
             for(int Count = 0; Count < FoodBits.Count; Count++)
             {
@@ -39,8 +39,11 @@ namespace F1tZyWorm
                 {
                     FoodBits.RemoveAt(Count);
                     States.FoodBitsCollected++;
+                    WormHead.
                 }
             }
+
+            return WormHead;
         }
 
         public static Vector2 Point(Point location)
