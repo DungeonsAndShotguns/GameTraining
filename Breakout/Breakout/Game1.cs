@@ -19,6 +19,14 @@ namespace Breakout
         public static GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
 
+        // States
+        public static bool Debug = false;
+
+        // interface stuffs
+        KeyboardState LastState = Keyboard.GetState();
+
+        public Entities.Paddle Paddle = null;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,7 +55,12 @@ namespace Breakout
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // Load up the paddle
+            Paddle = new Entities.Paddle(new Vector2(spriteBatch.GraphicsDevice.Viewport.Width / 2, spriteBatch.GraphicsDevice.Viewport.Height - 30), 
+                new Rectangle(100, 300, 52, 12));
+            Paddle.LoadImage(Content.Load<Texture2D>("Images\\paddleRed"));
+            Paddle.ResizeBoundingBox(Paddle.ReturnImage());
+            
         }
 
         /// <summary>
@@ -66,13 +79,29 @@ namespace Breakout
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.D) && LastState.IsKeyUp(Keys.D))
+            {
+                if (Debug == true)
+                {
+                    Debug = false;
+                }
+                else
+                {
+                    Debug = true;
+                }
+            }
 
-            // TODO: Add your update logic here
+            Paddle.Update(gameTime);
 
             base.Update(gameTime);
+
+            LastState = Keyboard.GetState();
         }
 
         /// <summary>
@@ -81,9 +110,12 @@ namespace Breakout
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
 
-            // TODO: Add your drawing code here
+            Paddle.Draw(gameTime);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

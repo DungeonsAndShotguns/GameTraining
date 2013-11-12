@@ -33,9 +33,20 @@ namespace Breakout
             Position = position;
         }
 
+        public void Move(float x, float y)
+        {
+            Position = new Vector2(Position.X + x, Position.Y + y);
+            DefineBoundingBox(new Rectangle((int)Position.X, (int)Position.Y, Image.Width, Image.Height));
+        }
+
         public void DefineBoundingBox(Rectangle boundingBox)
         {
             BoundingBox = boundingBox;
+        }
+
+        public void ResizeBoundingBox(Texture2D imageToUse)
+        {
+            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, imageToUse.Width, imageToUse.Height);
         }
 
         public void SetVisable(bool visable)
