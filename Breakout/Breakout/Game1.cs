@@ -27,6 +27,8 @@ namespace Breakout
 
         public Entities.Paddle Paddle = null;
 
+        public Texture2D DebugBug = null;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -54,6 +56,8 @@ namespace Breakout
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            DebugBug = Content.Load<Texture2D>("Images\\Bug");
 
             // Load up the paddle
             Paddle = new Entities.Paddle(new Vector2(spriteBatch.GraphicsDevice.Viewport.Width / 2, spriteBatch.GraphicsDevice.Viewport.Height - 30), 
@@ -112,6 +116,12 @@ namespace Breakout
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+
+            if (Debug == true)
+            {
+                spriteBatch.Draw(DebugBug, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - 40, 10),
+                    Color.White);
+            }
 
             Paddle.Draw(gameTime);
 
