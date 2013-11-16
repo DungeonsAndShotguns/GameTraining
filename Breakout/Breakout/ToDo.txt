@@ -1,0 +1,14 @@
+﻿TODO
+======
+Better DS Intro
+Multiplayer Coop
+Power up System
+Load Settings from File
+Resize all images based on resoultion
+Nice Menu System
+High Score System / Online
+Level System based on Simple Json File
+Multiplayer Versus
+Add Music
+Use Advance Sound Playback
+Make HTML Info File
