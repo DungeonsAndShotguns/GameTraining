@@ -39,6 +39,7 @@
     <Compile Include="Entities\Paddle.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,9 +68,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Content\Images\ballGrey.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\Images\ballGrey.xnb" />
     <None Include="Content\Images\Bug.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

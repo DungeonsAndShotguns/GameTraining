@@ -31,6 +31,7 @@ namespace Breakout
         public void SetPosition(Vector2 position)
         {
             Position = position;
+            BoundingBox = new Rectangle((int)position.X, (int)position.Y, BoundingBox.Width, BoundingBox.Height);
         }
 
         public void Move(float x, float y)
@@ -84,6 +85,10 @@ namespace Breakout
             // do somthing
             return null;
         }
+
+        public virtual void Update(GameTime gameTime, Rectangle screen) { }
+
+        public virtual void Draw(GameTime gameTime) { }
 
     }
 }
