@@ -11,6 +11,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Breakout
 {
+    public enum GameStates
+	{
+        InGame, MainMenu, SiteIntro, PersonalIntro   
+	}
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -18,9 +23,12 @@ namespace Breakout
     {
         public static GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
+        public static ContentManager Load;
+        public static GameStates CurrentState;
 
         // States
         public static bool Debug = false;
+        Breakout.F1tZLogo LogoMe = null;
 
         // interface stuffs
         KeyboardState LastState = Keyboard.GetState();
@@ -45,7 +53,7 @@ namespace Breakout
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Load = Content;
 
             base.Initialize();
         }
@@ -61,21 +69,13 @@ namespace Breakout
 
             DebugBug = Content.Load<Texture2D>("Images\\Bug");
 
-            // Load up the paddle
-            Paddle = new Entities.Paddle(new Vector2(spriteBatch.GraphicsDevice.Viewport.Width / 2, spriteBatch.GraphicsDevice.Viewport.Height - 50), 
-                new Rectangle(100, 400, 52, 12));
-            Paddle.LoadImage(Content.Load<Texture2D>("Images\\paddleRed"));
-            Paddle.ResizeBoundingBox(Paddle.ReturnImage());
+            LogoMe = new F1tZLogo(Content);
 
-            Ball = new Entities.Ball(new Vector2(spriteBatch.GraphicsDevice.Viewport.Width / 2, spriteBatch.GraphicsDevice.Viewport.Height / 2),
-                new Rectangle(), 2, Content.Load<Texture2D>("Images\\ballGrey"));
-            Ball.ResizeBoundingBox(Ball.ReturnImage());
+            Level1 = new Breakout.Levels.Classic();
 
-            Level1 = new Level(null, null, new Rectangle(25, 25, 750, 425));
-
-            Level1.AddEntity(Paddle);
-            Level1.AddEntity(Ball);
             Level1.Load();
+
+            CurrentState = GameStates.PersonalIntro;
             
         }
 
@@ -95,31 +95,39 @@ namespace Breakout
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                this.Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.D) && LastState.IsKeyUp(Keys.D))
+
+            if (CurrentState == GameStates.PersonalIntro)
             {
-                if (Debug == true)
-                {
-                    Debug = false;
-                }
-                else
-                {
-                    Debug = true;
-                }
+                LogoMe.Update(gameTime);
             }
 
-            //Paddle.Update(gameTime);
-            //Ball.Update(gameTime);
-            Level1.Update(gameTime);
+            if (CurrentState == GameStates.InGame)
+            {
+                // Allows the game to exit
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                    this.Exit();
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    this.Exit();
+                if (Keyboard.GetState().IsKeyDown(Keys.D) && LastState.IsKeyUp(Keys.D))
+                {
+                    if (Debug == true)
+                    {
+                        Debug = false;
+                    }
+                    else
+                    {
+                        Debug = true;
+                    }
+                }
 
-            base.Update(gameTime);
+                //Paddle.Update(gameTime);
+                //Ball.Update(gameTime);
+                Level1.Update(gameTime);
 
-            LastState = Keyboard.GetState();
+                base.Update(gameTime);
+
+                LastState = Keyboard.GetState();
+            }
         }
 
         /// <summary>
@@ -131,16 +139,24 @@ namespace Breakout
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            if (Debug == true)
+            if (CurrentState == GameStates.PersonalIntro)
             {
-                spriteBatch.Draw(DebugBug, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - 40, 10),
-                    Color.White);
+                LogoMe.Draw(gameTime);
             }
 
-            //Paddle.Draw(gameTime);
-            //Ball.Draw(gameTime);
+            if (CurrentState == GameStates.InGame)
+            {
+                if (Debug == true)
+                {
+                    spriteBatch.Draw(DebugBug, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - 40, 10),
+                        Color.White);
+                }
 
-            Level1.Draw(gameTime);
+                //Paddle.Draw(gameTime);
+                //Ball.Draw(gameTime);
+
+                Level1.Draw(gameTime);
+            }
 
             spriteBatch.End();
 

@@ -36,10 +36,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\Ball.cs" />
+    <Compile Include="Entities\Block.cs" />
     <Compile Include="Entities\Paddle.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Intros\DSIntro.cs" />
+    <Compile Include="Intros\F1tZLogo.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Levels\Classic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

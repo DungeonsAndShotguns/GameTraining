@@ -15,6 +15,7 @@ namespace Breakout
         private ContentManager Content;
         private Texture2D Logo;
         private SoundEffect LogoSound;
+        private SpriteFont Font;
 
         private bool SoundPlayed = false;
 
@@ -43,6 +44,7 @@ namespace Breakout
         {
             Logo = Content.Load<Texture2D>("f1tz\\f1tzlogo");
             LogoSound = Content.Load<SoundEffect>("f1tz\\f1tzlogoaudio");
+            Font = Content.Load<SpriteFont>("f1tz\\F1tZ");
         }
 
         public void Update(GameTime gameTime)
@@ -51,7 +53,7 @@ namespace Breakout
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
                 {
-                    //GameState.CurrentState = States.MainMenu;
+                    //Game1.CurrentState = States.MainMenu;
                 }
             }
 
@@ -66,7 +68,7 @@ namespace Breakout
 
             if (gameTime.TotalGameTime > EndIntroTime)
             {
-                //GameState.CurrentState = States.MainMenu;
+                Game1.CurrentState = GameStates.InGame;
             }
 
             if (gameTime.TotalGameTime > StartTime.Add(new TimeSpan(0, 0, 0, 0, 100)))
@@ -95,30 +97,30 @@ namespace Breakout
         {
             if (One == true)
             {
-                GameState.spriteBatch.DrawString(GameState.GUIFont, "F", new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (GameState.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
+                Game1.spriteBatch.DrawString(Font, "F", new Vector2((Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (Game1.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
 
             if (Two == true)
             {
-                GameState.spriteBatch.DrawString(GameState.GUIFont, "F1", new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (GameState.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
+                Game1.spriteBatch.DrawString(Font, "F1", new Vector2((Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (Game1.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
 
             if (Three == true)
             {
-                GameState.spriteBatch.DrawString(GameState.GUIFont, "F1t", new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (GameState.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
+                Game1.spriteBatch.DrawString(Font, "F1t", new Vector2((Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (Game1.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
 
             if (Four == true)
             {
-                GameState.spriteBatch.DrawString(GameState.GUIFont, "F1tZ", new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (GameState.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
+                Game1.spriteBatch.DrawString(Font, "F1tZ", new Vector2((Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (Game1.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
 
             if (Five == true)
             {
-                GameState.spriteBatch.DrawString(GameState.GUIFont, "F1tZy", new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (GameState.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
+                Game1.spriteBatch.DrawString(Font, "F1tZy", new Vector2((Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2) - FontOffSetX, (Game1.spriteBatch.GraphicsDevice.Viewport.Height) + FontOffSetY), Color.White, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
 
-            GameState.spriteBatch.Draw(Logo, new Vector2((GameState.spriteBatch.GraphicsDevice.Viewport.Width / 2) -150, (GameState.spriteBatch.GraphicsDevice.Viewport.Height / 2) - 200), null, Color.White, 0, Vector2.Zero, 3f, SpriteEffects.None, 0f);
+            Game1.spriteBatch.Draw(Logo, new Vector2((Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2) -150, (Game1.spriteBatch.GraphicsDevice.Viewport.Height / 2) - 200), null, Color.White, 0, Vector2.Zero, 3f, SpriteEffects.None, 0f);
         }
 
     }

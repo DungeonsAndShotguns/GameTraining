@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using Breakout;
 
 namespace F1tZyPong
 {
@@ -30,6 +31,9 @@ namespace F1tZyPong
         private bool SoundPalyed = false;
         private IntroSatate State = IntroSatate.Blank;
 
+        private TimeSpan EndIntroTime;
+        private TimeSpan StartTime;
+
         public DSIntro(ContentManager Content) 
         {
             //spriteBatch = BatchToUse;
@@ -44,21 +48,21 @@ namespace F1tZyPong
 
         public void LoadContent()
         {
-            StartImage = Content.Load<Texture2D>("Intro\\startG");
-            RackImage = Content.Load<Texture2D>("Intro\\cockG");
-            EndImage = Content.Load<Texture2D>("Intro\\EndG");
-            IntroSound = Content.Load<SoundEffect>("Intro\\DSLogoAudio");
+            StartImage = Content.Load<Texture2D>("DS\\startG");
+            RackImage = Content.Load<Texture2D>("DS\\cockG");
+            EndImage = Content.Load<Texture2D>("DS\\EndG");
+            IntroSound = Content.Load<SoundEffect>("DS\\DSLogoAudio");
         }
 
         public void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
             {
-                GameState.CurrentState = States.F1tZIntro;
+                Game1.CurrentState = GameStates.PersonalIntro;
 
-                GameState.graphics.PreferredBackBufferHeight = 480;
-                GameState.graphics.PreferredBackBufferWidth = 800;
-                GameState.graphics.ApplyChanges();
+                Game1.graphics.PreferredBackBufferHeight = 480;
+                Game1.graphics.PreferredBackBufferWidth = 800;
+                Game1.graphics.ApplyChanges();
             }
 
             if (SoundPalyed == false)
@@ -67,28 +71,29 @@ namespace F1tZyPong
                 SoundPalyed = true;
                 State = IntroSatate.Start;
 
-                GameState.graphics.PreferredBackBufferHeight = 480;
-                GameState.graphics.PreferredBackBufferWidth = 640;
-                GameState.graphics.ApplyChanges();
+                Game1.graphics.PreferredBackBufferHeight = 480;
+                Game1.graphics.PreferredBackBufferWidth = 640;
+                Game1.graphics.ApplyChanges();
             }
 
-            if (gameTime.TotalGameTime.Ticks > 1 && State == IntroSatate.Start)
+            if (gameTime.TotalGameTime.TotalMilliseconds > StartTime.Add(new TimeSpan(0, 0, 0, 0, 1)).TotalMilliseconds && State == IntroSatate.Start)
             {
+                StartTime = gameTime.TotalGameTime;
                 State = IntroSatate.Rack;
             }
 
-            if (gameTime.TotalGameTime.TotalMilliseconds > 860 && State == IntroSatate.Rack)
+            if (gameTime.TotalGameTime.TotalMilliseconds > StartTime.Add(new TimeSpan(0,0,0,0,860)).TotalMilliseconds && State == IntroSatate.Rack)
             {
                 State = IntroSatate.End;
             }
 
-            if (gameTime.TotalGameTime.TotalSeconds > 6 && State == IntroSatate.End)
+            if (gameTime.TotalGameTime.TotalMilliseconds > StartTime.Add(new TimeSpan(0, 0, 0, 0, 6)).TotalMilliseconds && State == IntroSatate.End)
             {
-                GameState.graphics.PreferredBackBufferHeight = 480;
-                GameState.graphics.PreferredBackBufferWidth = 800;
-                GameState.graphics.ApplyChanges();
+                Game1.graphics.PreferredBackBufferHeight = 480;
+                Game1.graphics.PreferredBackBufferWidth = 800;
+                Game1.graphics.ApplyChanges();
 
-                GameState.CurrentState = States.F1tZIntro;
+                Game1.CurrentState = GameStates.PersonalIntro;
             }
         }
 
@@ -96,17 +101,17 @@ namespace F1tZyPong
         {
             if(State == IntroSatate.Start)
             {
-                GameState.spriteBatch.Draw(StartImage, Vector2.Zero, Color.White);
+                Game1.spriteBatch.Draw(StartImage, Vector2.Zero, Color.White);
             }
 
             if (State == IntroSatate.Rack)
             {
-                GameState.spriteBatch.Draw(RackImage, Vector2.Zero, Color.White);
+                Game1.spriteBatch.Draw(RackImage, Vector2.Zero, Color.White);
             }
 
             if (State == IntroSatate.End)
             {
-                GameState.spriteBatch.Draw(EndImage, Vector2.Zero, Color.White);
+                Game1.spriteBatch.Draw(EndImage, Vector2.Zero, Color.White);
             }
         }
     }

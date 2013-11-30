@@ -41,6 +41,7 @@ namespace Breakout.Entities
 
         public override Entity OnCollide(Entity entColliding)
         {
+            #region Paddle
             if (entColliding.GetType() == typeof(Entities.Paddle))
             {
                 if (this.ReturnBoundingBox().Intersects(((Paddle)entColliding).RightInnerHit) == true)
@@ -73,6 +74,16 @@ namespace Breakout.Entities
                     return this;
                 }
             }
+            #endregion
+
+            #region Block
+            if (entColliding.GetType() == typeof(Entities.Block))
+            {
+                ((Block)entColliding).DamageBlock(1);
+
+                Direction = new Vector2(Direction.X, -1 * Direction.Y);
+            }
+            #endregion
 
             return base.OnCollide(entColliding);
         }

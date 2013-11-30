@@ -25,12 +25,13 @@ namespace Breakout
             PlaySurface = playSurface;
         }
 
-        public void AddEntity(Entity entToAdd)
+        public Level AddEntity(Entity entToAdd)
         {
             LevelEntites.Add(entToAdd);
+            return this;
         }
 
-        public void Load()
+        public Level Load()
         {
             foreach (Entity currentEnt in LevelEntites)
             {
@@ -40,6 +41,8 @@ namespace Breakout
                     ((Entities.Ball)currentEnt).ToggleMovment();
                 }
             }
+
+            return this;
         }
 
         private void CheckCollsions()
