@@ -12,6 +12,7 @@ namespace Breakout.Entities
         float Speed { get; set; }
         Vector2 Direction { get; set; }
         bool InMovment { get; set; }
+        int ScoreBuffer { get; set; }
 
         public Ball(Vector2 startPosition, Rectangle boundingBox, float BaseSpeed, Texture2D image)
             : base(startPosition, boundingBox, true)
@@ -20,6 +21,8 @@ namespace Breakout.Entities
             this.LoadImage(image);
             InMovment = false;
             Direction = new Vector2();
+
+            ScoreBuffer = 0;
         }
 
         public void ToggleMovment()
@@ -32,6 +35,16 @@ namespace Breakout.Entities
             {
                 InMovment = true;
             }
+        }
+
+        public int GetScoreBuffer()
+        {
+            return ScoreBuffer;
+        }
+
+        public void ClearScoreBuffer()
+        {
+            ScoreBuffer = 0;
         }
 
         public void SetDirection(float x, float y)
@@ -79,9 +92,19 @@ namespace Breakout.Entities
             #region Block
             if (entColliding.GetType() == typeof(Entities.Block))
             {
-                ((Block)entColliding).DamageBlock(1);
+                if (((Block)entColliding).ReturnVisbale() == true)
+                {
+                    ((Block)entColliding).DamageBlock(1);
 
-                Direction = new Vector2(Direction.X, -1 * Direction.Y);
+                    Direction = new Vector2(Direction.X, -1 * Direction.Y);
+
+                    if (((Block)entColliding).GetDamage() > Speed * 1.5)
+                    {
+                        Speed = (float)(Speed * 1.5);
+                    }
+
+                    ScoreBuffer = ScoreBuffer + 1;
+                }
             }
             #endregion
 
@@ -95,11 +118,11 @@ namespace Breakout.Entities
                 SetPosition(new Vector2(ReturnPosition().X + (Speed * Direction.X), ReturnPosition().Y + (Speed * Direction.Y)));
             }
 
-            if (ReturnPosition().Y > screen.Bottom)
+            if (ReturnPosition().Y > screen.Bottom - ReturnImage().Height)
             {
                 //TODO: remove this in favor of a ball death
-                SetPosition(new Vector2(ReturnPosition().X, screen.Bottom - ReturnImage().Height));
-                Direction = new Vector2(Direction.X, -1 * Direction.Y);
+                ScoreBuffer = -1; // single that the ball died
+                SetVisable(false);
             }
 
             if (ReturnPosition().Y < screen.Top)
@@ -114,9 +137,9 @@ namespace Breakout.Entities
                 Direction = new Vector2(-1 *Direction.X, Direction.Y);
             }
 
-            if (ReturnPosition().X > screen.Right)
+            if (ReturnPosition().X > screen.Right - ReturnImage().Width)
             {
-                SetPosition(new Vector2(screen.Right, ReturnPosition().Y));
+                SetPosition(new Vector2(screen.Right - ReturnImage().Width, ReturnPosition().Y));
                 Direction = new Vector2(-1 * Direction.X, Direction.Y);
             }
         }

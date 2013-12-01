@@ -10,20 +10,209 @@ namespace Breakout.Levels
     public class Classic : Level
     {
         public Classic():
-            base(null, null, new Rectangle(25, 25, 750, 425))
+            base(Game1.Load.Load<Texture2D>("images\\background\\StarField"), Game1.Load.Load<SpriteFont>("UI"), Game1.Load.Load<SpriteFont>("UISmall"),new Rectangle(25, 25, 750, 425))
         {
+            SetName("Classic");
+            SetTagLine("\"I've seen this before\""); 
             //Add Ball and paddle
+            PaddleAdd();
+            BallAdd();
+            
+            // Add Blocks
+            AddBlocks();
+        }
+
+        private void PaddleAdd()
+        {
             Entities.Paddle TempPaddle = new Entities.Paddle(new Vector2(Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2, Game1.spriteBatch.GraphicsDevice.Viewport.Height - 50),
                 new Rectangle(100, 400, 52, 12));
-            TempPaddle.LoadImage(Game1.Load.Load<Texture2D>("Images\\paddleRed"));
+            TempPaddle.LoadImage(Game1.Load.Load<Texture2D>("images\\paddleRed"));
             TempPaddle.ResizeBoundingBox(TempPaddle.ReturnImage());
-
-            Entities.Ball TempBall = new Entities.Ball(new Vector2(Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2, Game1.spriteBatch.GraphicsDevice.Viewport.Height / 2),
-                new Rectangle(), 2, Game1.Load.Load<Texture2D>("Images\\ballGrey"));
-            TempBall.ResizeBoundingBox(TempBall.ReturnImage());
-
             this.AddEntity(TempPaddle);
+        }
+
+        private void BallAdd()
+        {
+            Entities.Ball TempBall = new Entities.Ball(new Vector2(Game1.spriteBatch.GraphicsDevice.Viewport.Width / 2, Game1.spriteBatch.GraphicsDevice.Viewport.Height / 2),
+                new Rectangle(), 2, Game1.Load.Load<Texture2D>("images\\ballGrey"));
+            TempBall.ResizeBoundingBox(TempBall.ReturnImage());
             this.AddEntity(TempBall);
+        }
+
+        private void AddBlocks()
+        {
+            Texture2D[] TempImages = { Game1.Load.Load<Texture2D>("images\\blocks\\GreyBlock"), 
+                                         Game1.Load.Load<Texture2D>("images\\blocks\\PurpleBlock"),
+                                         Game1.Load.Load<Texture2D>("images\\blocks\\BlueBlock"),
+                                         Game1.Load.Load<Texture2D>("images\\blocks\\GreenBlock"),
+                                         Game1.Load.Load<Texture2D>("images\\blocks\\YellowBlock"),
+                                         Game1.Load.Load<Texture2D>("images\\blocks\\RedBlock")
+                                     };
+            int currentX = 31;
+            int stepX = 37;
+
+            Entities.Block TempBlock = new Entities.Block();
+
+            while (currentX < 750)
+            {
+                
+
+                TempBlock = new Entities.Block(new Vector2(currentX, 160f), new Rectangle(), true, 1, TempImages);
+                TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+                this.AddEntity(TempBlock);
+
+                currentX = currentX + stepX;
+            }
+
+            currentX = 31;
+            stepX = 37;
+
+            while (currentX < 750)
+            {
+
+
+                TempBlock = new Entities.Block(new Vector2(currentX, 140f), new Rectangle(), true, 2, TempImages);
+                TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+                this.AddEntity(TempBlock);
+
+                currentX = currentX + stepX;
+            }
+
+            currentX = 31;
+            stepX = 37;
+
+            while (currentX < 750)
+            {
+
+
+                TempBlock = new Entities.Block(new Vector2(currentX, 120f), new Rectangle(), true, 3, TempImages);
+                TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+                this.AddEntity(TempBlock);
+
+                currentX = currentX + stepX;
+            }
+
+            currentX = 31;
+            stepX = 37;
+
+            while (currentX < 750)
+            {
+
+
+                TempBlock = new Entities.Block(new Vector2(currentX, 100f), new Rectangle(), true, 4, TempImages);
+                TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+                this.AddEntity(TempBlock);
+
+                currentX = currentX + stepX;
+            }
+
+            currentX = 31;
+            stepX = 37;
+
+            while (currentX < 750)
+            {
+
+
+                TempBlock = new Entities.Block(new Vector2(currentX, 80f), new Rectangle(), true, 5, TempImages);
+                TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+                this.AddEntity(TempBlock);
+
+                currentX = currentX + stepX;
+            }
+
+            currentX = 31;
+            stepX = 37;
+
+            while (currentX < 750)
+            {
+
+
+                TempBlock = new Entities.Block(new Vector2(currentX, 60f), new Rectangle(), true, 6, TempImages);
+                TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+                this.AddEntity(TempBlock);
+
+                currentX = currentX + stepX;
+            }
+
+            //Entities.Block TempBlock = new Entities.Block(new Vector2(26f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(64f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(102f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(140f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(178f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(216f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(254f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(292f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(330f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(368f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(406f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(444f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(482f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(520f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(558f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(596f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(634f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(672f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            //TempBlock = new Entities.Block(new Vector2(710f, 100f), new Rectangle(), true, 1, TempImages);
+            //TempBlock.ResizeBoundingBox(TempBlock.ReturnImage());
+            //this.AddEntity(TempBlock);
+
+            
+
+            //this.AddEntity(TempBlock.SetBlockPos(new Vector2(48f, 100f)));
         }
     }
 }

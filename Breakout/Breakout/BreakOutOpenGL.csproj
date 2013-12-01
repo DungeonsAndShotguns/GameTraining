@@ -73,6 +73,12 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Content\Images\ballGrey.xnb" />
+    <None Include="Content\Images\blocks\BlueBlock.xnb" />
+    <None Include="Content\Images\blocks\GreenBlock.xnb" />
+    <None Include="Content\Images\blocks\GreyBlock.xnb" />
+    <None Include="Content\Images\blocks\PurpleBlock.xnb" />
+    <None Include="Content\Images\blocks\RedBlock.xnb" />
+    <None Include="Content\Images\blocks\YellowBlock.xnb" />
     <None Include="Content\Images\Bug.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -13,7 +13,7 @@ namespace Breakout
 {
     public enum GameStates
 	{
-        InGame, MainMenu, SiteIntro, PersonalIntro   
+        InGame, MainMenu, SiteIntro, PersonalIntro, DeathMenu   
 	}
 
     /// <summary>
@@ -26,8 +26,10 @@ namespace Breakout
         public static ContentManager Load;
         public static GameStates CurrentState;
 
+        public static int PreviousScore;
+
         // States
-        public static bool Debug = false;
+        public static bool Debug = true;
         Breakout.F1tZLogo LogoMe = null;
 
         // interface stuffs
@@ -75,7 +77,15 @@ namespace Breakout
 
             Level1.Load();
 
-            CurrentState = GameStates.PersonalIntro;
+            if (Debug == false)
+            {
+                CurrentState = GameStates.PersonalIntro;
+            }
+            else
+            {
+                CurrentState = GameStates.InGame;
+                Debug = false;
+            }
             
         }
 
@@ -152,9 +162,11 @@ namespace Breakout
                         Color.White);
                 }
 
-                //Paddle.Draw(gameTime);
-                //Ball.Draw(gameTime);
+                Level1.Draw(gameTime);
+            }
 
+            if (CurrentState == GameStates.DeathMenu)
+            {
                 Level1.Draw(gameTime);
             }
 

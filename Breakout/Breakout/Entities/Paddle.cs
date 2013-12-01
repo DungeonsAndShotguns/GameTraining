@@ -25,7 +25,7 @@ namespace Breakout.Entities
         public Paddle(Vector2 startPosition, Rectangle boundingBox) : 
             base(startPosition, boundingBox, true)
         {
-            Speed = 4.5f;
+            Speed = 5f;
             Stickey = false;
             Slow = false;
             BallControl = false;
@@ -79,11 +79,11 @@ namespace Breakout.Entities
                 SetPosition(new Vector2(screen.Right - ReturnImage().Width, ReturnPosition().Y));
             }
 
-            LeftHit = new Rectangle((int)ReturnPosition().X, (int)ReturnPosition().Y, 10, 12);
-            LeftInnerHit = new Rectangle((int)ReturnPosition().X + 10, (int)ReturnPosition().Y, 11, 12);
-            MiddleHit = new Rectangle((int)ReturnPosition().X + 21, (int)ReturnPosition().Y, 10, 12);
-            RightInnerHit = new Rectangle((int)ReturnPosition().X + 31, (int)ReturnPosition().Y, 11, 12);
-            RightHit = new Rectangle((int)ReturnPosition().X + 42, (int)ReturnPosition().Y, 10, 12);
+            LeftHit = new Rectangle((int)ReturnPosition().X, (int)ReturnPosition().Y, 10, 10);
+            LeftInnerHit = new Rectangle((int)ReturnPosition().X + 10, (int)ReturnPosition().Y, 11, 10);
+            MiddleHit = new Rectangle((int)ReturnPosition().X + 21, (int)ReturnPosition().Y, 10, 10);
+            RightInnerHit = new Rectangle((int)ReturnPosition().X + 31, (int)ReturnPosition().Y, 11, 10);
+            RightHit = new Rectangle((int)ReturnPosition().X + 42, (int)ReturnPosition().Y, 10, 10);
 
         }
 

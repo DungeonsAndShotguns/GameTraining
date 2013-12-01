@@ -57,12 +57,12 @@ namespace Breakout
 
         public Texture2D ReturnImage()
         {
-            if (Visable == true)
-            {
+            //if (Visable == true)
+            //{
                 return Image;
-            }
+            //}
             
-            return null;
+            //return null;
         }
 
         public Vector2 ReturnPosition()
