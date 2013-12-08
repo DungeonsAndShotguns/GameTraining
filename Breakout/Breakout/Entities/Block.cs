@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Breakout.Entities
 {
@@ -12,10 +13,12 @@ namespace Breakout.Entities
         int DamageValue { get; set; }
 
         Texture2D[] Images { get; set; }
+        SoundEffect BreakBlock { get; set; }
+        SoundEffect BlockHit { get; set; }
 
         public Block() : base() { }
 
-        public Block(Vector2 position, Rectangle boundingBox, bool isVisable, int damageValue, Texture2D[] images) :
+        public Block(Vector2 position, Rectangle boundingBox, bool isVisable, int damageValue, Texture2D[] images, SoundEffect breakBlock, SoundEffect blockHit) :
             base(position, boundingBox, isVisable)
         {
             if (damageValue > 6)
@@ -25,6 +28,8 @@ namespace Breakout.Entities
 
             DamageValue = damageValue;
             Images = images;
+            BreakBlock = breakBlock;
+            BlockHit = blockHit;
         }
 
         public Block SetBlockPos(Vector2 pos)
@@ -37,6 +42,11 @@ namespace Breakout.Entities
         public void DamageBlock(int amount)
         {
             DamageValue -= amount;
+
+            if (DamageValue > 0 && Game1.Mute == false)
+            {
+                BlockHit.Play();
+            }
         }
 
         public int GetDamage()
@@ -61,9 +71,14 @@ namespace Breakout.Entities
 
         public override void Update(GameTime gameTime, Rectangle screen)
         {
-            if (DamageValue <= 0)
+            if (DamageValue <= 0 && this.ReturnVisbale() == true)
             {
                 this.SetVisable(false);
+
+                if (Game1.Mute == false)
+                {
+                    BreakBlock.Play();
+                }
             }
         }
 

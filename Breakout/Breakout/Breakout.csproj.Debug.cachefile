@@ -2,12 +2,9 @@ Content\Images\ballGrey.xnb
 Content\Images\paddleRed.xnb
 Content\Images\Bug.xnb
 Content\f1tz\f1tzlogo.xnb
-Content\f1tz\f1tzlogoaudio.xnb
-Content\f1tz\F1tZ.xnb
 Content\DS\cockG.xnb
 Content\DS\EndG.xnb
 Content\DS\startG.xnb
-Content\DS\DSLogoAudio.xnb
 Content\Images\blocks\BlueBlock.xnb
 Content\Images\blocks\GreenBlock.xnb
 Content\Images\blocks\GreyBlock.xnb
@@ -17,5 +14,11 @@ Content\Images\blocks\YellowBlock.xnb
 Content\Images\background\StarField.xnb
 Content\Images\background\Desert.xnb
 Content\Images\background\Swamp.xnb
+Content\f1tz\f1tzlogoaudio.xnb
+Content\DS\DSLogoAudio.xnb
+Content\SoundEffects\Break.xnb
+Content\SoundEffects\Hit.xnb
+Content\SoundEffects\lefthit.xnb
+Content\f1tz\F1tZ.xnb
 Content\UI.xnb
 Content\UISmall.xnb

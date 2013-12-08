@@ -68,7 +68,7 @@ namespace Breakout
 
             if (gameTime.TotalGameTime > EndIntroTime)
             {
-                Game1.CurrentState = GameStates.InGame;
+                Game1.CurrentState = GameStates.MainMenu;
             }
 
             if (gameTime.TotalGameTime > StartTime.Add(new TimeSpan(0, 0, 0, 0, 100)))

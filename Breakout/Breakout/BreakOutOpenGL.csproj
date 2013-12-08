@@ -44,6 +44,12 @@
     <Compile Include="Intros\F1tZLogo.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Levels\Classic.cs" />
+    <Compile Include="Levels\EasyPie.cs" />
+    <Compile Include="Menus\DeathMenu.cs" />
+    <Compile Include="Menus\LevelSelect.cs" />
+    <Compile Include="Menus\MainMenu.cs" />
+    <Compile Include="Menus\Pause.cs" />
+    <Compile Include="Menus\Win.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,17 +78,76 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Content\Images\ballGrey.xnb" />
-    <None Include="Content\Images\blocks\BlueBlock.xnb" />
-    <None Include="Content\Images\blocks\GreenBlock.xnb" />
-    <None Include="Content\Images\blocks\GreyBlock.xnb" />
-    <None Include="Content\Images\blocks\PurpleBlock.xnb" />
-    <None Include="Content\Images\blocks\RedBlock.xnb" />
-    <None Include="Content\Images\blocks\YellowBlock.xnb" />
+    <None Include="Content\DS\cockG.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\DS\DSLogoAudio.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\DS\EndG.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\DS\startG.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\f1tz\F1tZ.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\f1tz\f1tzlogo.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\f1tz\f1tzlogoaudio.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\background\Desert.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\background\StarField.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\background\Swamp.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\ballGrey.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\blocks\BlueBlock.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\blocks\GreenBlock.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\blocks\GreyBlock.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\blocks\PurpleBlock.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\blocks\RedBlock.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Images\blocks\YellowBlock.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Images\Bug.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\Images\paddleRed.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundEffects\Break.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundEffects\Hit.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundEffects\lefthit.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\UI.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\UISmall.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

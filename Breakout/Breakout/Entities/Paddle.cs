@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Breakout.Entities
 {
@@ -16,19 +17,22 @@ namespace Breakout.Entities
         bool BallControl { get; set; }
         bool BallPahse { get; set; }
 
+        SoundEffect Hit { get; set; }
+
         public Rectangle LeftHit = new Rectangle();
         public Rectangle LeftInnerHit = new Rectangle();
         public Rectangle MiddleHit = new Rectangle();
         public Rectangle RightInnerHit = new Rectangle();
         public Rectangle RightHit = new Rectangle();
 
-        public Paddle(Vector2 startPosition, Rectangle boundingBox) : 
+        public Paddle(Vector2 startPosition, Rectangle boundingBox, SoundEffect hit) : 
             base(startPosition, boundingBox, true)
         {
-            Speed = 5f;
+            Speed = 7f;
             Stickey = false;
             Slow = false;
             BallControl = false;
+            Hit = hit;
 
             // define inner hit boxes
             //LeftHit = new Rectangle((int)ReturnPosition().X, (int)ReturnPosition().Y, 10, 12);
@@ -91,7 +95,10 @@ namespace Breakout.Entities
         {
             if (entColliding.GetType() == typeof(Ball))
             {
-                
+                if (Game1.Mute == false)
+                {
+                    Hit.Play();
+                }
             }
 
             return entColliding;

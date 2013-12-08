@@ -10,6 +10,7 @@ namespace Breakout
     public class Entity
     {
         Vector2 Position { get; set; }
+        Vector2 StartPos { get; set; }
         Rectangle BoundingBox { get; set; }
         Texture2D Image { get; set; }
         bool Visable { get; set; }
@@ -18,7 +19,8 @@ namespace Breakout
 
         public Entity(Vector2 startPosition, Rectangle boundingBox, bool isVisable)
         {
-            Position = startPosition;
+            StartPos = startPosition;
+            Position = StartPos;
             BoundingBox = boundingBox;
             Visable = isVisable;
         }
@@ -63,6 +65,11 @@ namespace Breakout
             //}
             
             //return null;
+        }
+
+        public void RestPOS()
+        {
+            Position = StartPos;
         }
 
         public Vector2 ReturnPosition()

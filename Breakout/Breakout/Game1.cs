@@ -13,7 +13,7 @@ namespace Breakout
 {
     public enum GameStates
 	{
-        InGame, MainMenu, SiteIntro, PersonalIntro, DeathMenu   
+        InGame, MainMenu, SiteIntro, PersonalIntro, DeathMenu, Exit, LevelSelect, PauseMenu, WinMenu
 	}
 
     /// <summary>
@@ -29,15 +29,20 @@ namespace Breakout
         public static int PreviousScore;
 
         // States
-        public static bool Debug = true;
-        Breakout.F1tZLogo LogoMe = null;
+        public static bool Debug = false;
+        public static bool Mute = false;
 
         // interface stuffs
         KeyboardState LastState = Keyboard.GetState();
+        public static TimeSpan LastIneractTime = new TimeSpan();
 
-        public Entities.Paddle Paddle = null;
-        public Entities.Ball Ball = null;
-        public Level Level1 = new Level();
+        Breakout.F1tZLogo LogoMe = null;
+        public static Level Level1 = new Level();
+        public Menus.DeathMenu Dmenu = null;
+        public Menus.MainMenu MMenu = null;
+        public Menus.LevelSelect LMenu = null;
+        public Menus.Pause PMenu = null;
+        public Menus.Win WMenu = null;
 
         public Texture2D DebugBug = null;
 
@@ -73,7 +78,12 @@ namespace Breakout
 
             LogoMe = new F1tZLogo(Content);
 
-            Level1 = new Breakout.Levels.Classic();
+            //Level1 = new Breakout.Levels.Classic();
+            Dmenu = new Menus.DeathMenu();
+            MMenu = new Menus.MainMenu();
+            LMenu = new Menus.LevelSelect();
+            PMenu = new Menus.Pause();
+            WMenu = new Menus.Win();
 
             Level1.Load();
 
@@ -83,7 +93,7 @@ namespace Breakout
             }
             else
             {
-                CurrentState = GameStates.InGame;
+                CurrentState = GameStates.MainMenu;
                 Debug = false;
             }
             
@@ -116,8 +126,6 @@ namespace Breakout
                 // Allows the game to exit
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                     this.Exit();
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    this.Exit();
                 if (Keyboard.GetState().IsKeyDown(Keys.D) && LastState.IsKeyUp(Keys.D))
                 {
                     if (Debug == true)
@@ -128,16 +136,45 @@ namespace Breakout
                     {
                         Debug = true;
                     }
+
                 }
 
-                //Paddle.Update(gameTime);
-                //Ball.Update(gameTime);
                 Level1.Update(gameTime);
-
-                base.Update(gameTime);
 
                 LastState = Keyboard.GetState();
             }
+
+            if (CurrentState == GameStates.DeathMenu)
+            {
+                Dmenu.Update(gameTime);
+            }
+
+            if (CurrentState == GameStates.MainMenu)
+            {
+                MMenu.Update(gameTime);
+            }
+
+            if (CurrentState == GameStates.Exit)
+            {
+                this.Exit();
+            }
+
+            if (CurrentState == GameStates.LevelSelect)
+            {
+                LMenu.Update(gameTime);
+            }
+
+            if (CurrentState == GameStates.PauseMenu)
+            {
+                PMenu.Update(gameTime);
+            }
+
+            if (CurrentState == GameStates.WinMenu)
+            {
+                WMenu.Update(gameTime);
+            }
+
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -168,6 +205,29 @@ namespace Breakout
             if (CurrentState == GameStates.DeathMenu)
             {
                 Level1.Draw(gameTime);
+                Dmenu.Draw(gameTime);
+            }
+
+            if (CurrentState == GameStates.MainMenu)
+            {
+                MMenu.Draw(gameTime);
+            }
+
+            if (CurrentState == GameStates.LevelSelect)
+            {
+                LMenu.Draw(gameTime);
+            }
+
+            if (CurrentState == GameStates.PauseMenu)
+            {
+                Level1.Draw(gameTime);
+                PMenu.Draw(gameTime);
+            }
+
+            if (CurrentState == GameStates.WinMenu)
+            {
+                Level1.Draw(gameTime);
+                WMenu.Draw(gameTime);
             }
 
             spriteBatch.End();

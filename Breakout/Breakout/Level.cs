@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Breakout
 {
@@ -20,15 +21,18 @@ namespace Breakout
         string LevelName = string.Empty;
         string TagLine = string.Empty;
         string DeathMessage = string.Empty;
+        bool ResetPOS = false;
+        bool DrawUI = true;
 
         public Level() { }
 
-        public Level(Texture2D backgroundImage, SpriteFont uiFont, SpriteFont uiSmallFont ,Rectangle playSurface)
+        public Level(Texture2D backgroundImage, SpriteFont uiFont, SpriteFont uiSmallFont ,Rectangle playSurface, bool drawUI)
         {
             Background = backgroundImage;
             UIFont = uiFont;
             UISmallFont = uiSmallFont;
             PlaySurface = playSurface;
+            DrawUI = drawUI;
         }
 
         public void SetBackground(Texture2D bg)
@@ -44,6 +48,16 @@ namespace Breakout
         public void SetTagLine(string tagLine)
         {
             TagLine = tagLine;
+        }
+
+        public void SetBallAmount(int balls)
+        {
+            BallAmount = balls;
+        }
+
+        public string GetName()
+        {
+            return LevelName;
         }
 
         public Level AddEntity(Entity entToAdd)
@@ -86,6 +100,41 @@ namespace Breakout
             {
                 Game1.PreviousScore = Score;
                 Game1.CurrentState = GameStates.DeathMenu;
+                return;
+            }
+
+            bool foundBlock = false;
+            foreach (Entity CurEnt in LevelEntites)
+            {
+                if (CurEnt.GetType() == typeof(Entities.Block))
+                {
+                    foundBlock = true;
+                }
+            }
+
+            if (foundBlock == false)
+            {
+                Game1.CurrentState = GameStates.WinMenu;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Game1.CurrentState = GameStates.PauseMenu;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+            {
+                List<Entity> TempEnt = new List<Entity>();
+
+                foreach (Entity CurrentEnt in LevelEntites)
+                {
+                    if (CurrentEnt.GetType() == typeof(Entities.Block))
+                    {
+                        continue;
+                    }
+
+                    TempEnt.Add(CurrentEnt);
+                }
+
+                LevelEntites = TempEnt;
             }
 
             #region Ent Handle
@@ -96,12 +145,25 @@ namespace Breakout
                     if (((Entities.Ball)currentEnt).GetScoreBuffer() == -1)
                     {
                         BallAmount = BallAmount - 1;
+                        ((Entities.Ball)currentEnt).ClearScoreBuffer();
+                        ((Entities.Ball)currentEnt).RestPOS();
+                        ResetPOS = true;
+
                     }
 
                     if (((Entities.Ball)currentEnt).GetScoreBuffer() > 0)
                     {
                         Score = Score + ((Entities.Ball)currentEnt).GetScoreBuffer();
                         ((Entities.Ball)currentEnt).ClearScoreBuffer();
+                    }
+                }
+
+                if (currentEnt.GetType() == typeof(Entities.Paddle))
+                {
+                    if (ResetPOS == true)
+                    {
+                        currentEnt.RestPOS();
+                        ResetPOS = false;
                     }
                 }
 
@@ -132,7 +194,7 @@ namespace Breakout
                 currentEnt.Draw(gameTime);
             }
 
-            if (UIFont != null)
+            if (UIFont != null && DrawUI == true)
             {
                 Game1.spriteBatch.DrawString(UIFont, "Score " + Score, new Vector2(680f, 2f), Color.White);
 
@@ -143,9 +205,13 @@ namespace Breakout
 
                 if (string.IsNullOrEmpty(TagLine) == false && UISmallFont != null)
                 {
-                    Game1.spriteBatch.DrawString(UIFont, TagLine, new Vector2(24f, 450f), Color.White);
+                    Game1.spriteBatch.DrawString(UISmallFont, TagLine, new Vector2(28f, 458f), Color.White);
                 }
 
+                if (string.IsNullOrEmpty(LevelName) == false && UIFont != null)
+                {
+                    Game1.spriteBatch.DrawString(UIFont, "Balls " + BallAmount, new Vector2(700f, 450f), Color.White);
+                }
             }
         }
     }
