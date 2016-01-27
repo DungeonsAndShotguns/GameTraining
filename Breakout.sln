@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Breakout", "Breakout\Breakout\Breakout.csproj", "{49DB4302-56BC-41DF-A559-8EC5BF2ABCE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakoutContent", "Breakout\BreakoutContent\BreakoutContent.contentproj", "{C8E07D4A-57B5-44D9-88FC-447A6BB7B169}"
@@ -9,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakOutOpenGL", "Breakout\
 	ProjectSection(ProjectDependencies) = postProject
 		{49DB4302-56BC-41DF-A559-8EC5BF2ABCE4} = {49DB4302-56BC-41DF-A559-8EC5BF2ABCE4}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakOutMono", "BreakOutMono\BreakOutMono.csproj", "{A268CAB2-1785-409B-A127-381C36E29C83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,16 @@ Global
 		{2D404F7E-3DB3-42A4-ABCE-F2AC9A1E3927}.Release|x86.ActiveCfg = Release|x86
 		{2D404F7E-3DB3-42A4-ABCE-F2AC9A1E3927}.Release|x86.Build.0 = Release|x86
 		{2D404F7E-3DB3-42A4-ABCE-F2AC9A1E3927}.Release|Xbox 360.ActiveCfg = Release|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Debug|x86.ActiveCfg = Debug|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Debug|x86.Build.0 = Debug|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Release|x86.ActiveCfg = Release|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Release|x86.Build.0 = Release|x86
+		{A268CAB2-1785-409B-A127-381C36E29C83}.Release|Xbox 360.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
